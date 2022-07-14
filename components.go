@@ -46,11 +46,12 @@ func bar(status int) (bar string) {
 	return
 }
 
-func Ask(prompt string, input *string) {
-	prompt = fmt.Sprintf(" %s ", prompt)
-	fmt.Printf("\n%s ", Style(&prompt, INVERT))
-	fmt.Scanln(&*input)
-	fmt.Printf("\n")
+func Ask(prompt string, store *string) {
+	fmt.Printf("%s: ", prompt)
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		*store = scanner.Text()
+	}
 }
 
 func Typewriter(str string) {
