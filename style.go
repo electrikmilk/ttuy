@@ -60,10 +60,10 @@ const (
 	BG_BRIGHT_WHITE       = 107
 )
 
-func Style(str *string, styles ...SGR) (styled string) {
+func Style(str string, styles ...SGR) (styled string) {
 	for _, s := range styles {
 		styled += fmt.Sprintf("\033[%dm", s)
 	}
-	styled += fmt.Sprintf("%s\033[0m", *str)
+	styled += fmt.Sprintf("%s\033[0m", str)
 	return
 }

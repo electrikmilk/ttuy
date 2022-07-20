@@ -94,10 +94,10 @@ func Menu(title string, options []Option) {
 
 func template() (menu string) {
 	optionCount = len(menuOptions)
-	menu = Style(&menuTitle, BOLD, GREEN) + "\n"
+	menu = Style(menuTitle, BOLD, GREEN) + "\n"
 	for i, option := range menuOptions {
 		if i == optionIndex {
-			menu += Style(&selected, MAGENTA) + fmt.Sprintf(" %s\n", option.Label)
+			menu += Style(selected, MAGENTA) + fmt.Sprintf(" %s\n", option.Label)
 		} else {
 			menu += fmt.Sprintf("[ ] %s\n", option.Label)
 		}

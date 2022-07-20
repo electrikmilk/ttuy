@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"bufio"
 )
 
 func File(name string) {
@@ -47,11 +48,13 @@ func bar(status int) (bar string) {
 }
 
 func Ask(prompt string, store *string) {
-	fmt.Printf("%s: ", prompt)
+	prompt = Style(fmt.Sprintf(" %s: ", prompt), BOLD, INVERT)
+	fmt.Printf("%s ", prompt)
 	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {
 		*store = scanner.Text()
 	}
+	fmt.Printf("\n")
 }
 
 func Typewriter(str string) {
