@@ -1,6 +1,14 @@
 # ttuy
 Basic Terminal TUI
 
+```console
+go get github.com/electrikmilk/ttuy
+```
+
+```go
+import "github.com/electrikmilk/ttuy"
+```
+
 ## Components
 
 Progress bar
