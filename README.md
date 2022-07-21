@@ -32,13 +32,13 @@ ttuy.File("logo.txt")
 Menu
 ``` go
 ttuy.Menu("Title", []ttuy.Option{
-    ttuy.Option{
+    {
       Label: "Option 1",
       Callback: func() {
         //
       },
     },
-    ttuy.Option{
+    {
       Label: "Option 2",
       Callback: func() {
         //
@@ -53,6 +53,11 @@ Input prompt
 ```go
 var name string
 ttuy.Ask("Enter your name", &name)
+```
+
+Style output
+```go
+ttuy.Style("Text", ttuy.BOLD, ttuy.GREEN) // returns string
 ```
 
 ## Example
