@@ -1,13 +1,17 @@
+/*
+ * Copyright (c) 2022 Brandon Jordan
+ */
+
 package ttuy
 
 import (
+	"bufio"
 	"fmt"
 	"os"
 	"os/exec"
 	"strconv"
 	"strings"
 	"time"
-	"bufio"
 )
 
 func File(name string) {
