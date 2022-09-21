@@ -57,6 +57,7 @@ func Menu(title string, options []Option) {
 		case keyboard.KeyEnter:
 			selectedOption := menuOptions[optionIndex]
 			selectedOption.Callback()
+			cursorShow()
 			drawing = false
 		}
 	})
