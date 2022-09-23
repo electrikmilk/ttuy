@@ -33,6 +33,7 @@ var drawing bool = true
 type Option struct {
 	Label    string
 	Callback func()
+	Disabled bool
 }
 
 func Menu(title string, options []Option) {
@@ -41,30 +42,45 @@ func Menu(title string, options []Option) {
 	drawing = true
 	cursorHide()
 	content = template()
-	split_count()
-	var makeRoom int = lineCount + 1
-	for i := 0; i < makeRoom; i++ {
-		fmt.Printf("\n")
-	}
-	linePrev(makeRoom)
+	splitCount()
+	makeRoom()
+	firstAvailable()
 	go readKeys(func(key any) {
 		switch key {
 		case keyboard.KeyArrowUp:
-			var newIndex = optionIndex - 1
-			if newIndex <= 0 {
-				optionIndex = 0
-			} else {
-				optionIndex = newIndex
+			var nextIndex = optionIndex - 1
+			var nextOptionDisabled bool = true
+			for nextOptionDisabled == true {
+				if nextIndex > -1 {
+					nextOptionDisabled = menuOptions[nextIndex].Disabled
+					if nextOptionDisabled == false {
+						optionIndex = nextIndex
+						break
+					}
+				} else {
+					break
+				}
+				nextIndex--
 			}
+
 		case keyboard.KeyArrowDown:
-			var newIndex = optionIndex + 1
-			if newIndex < optionCount {
-				optionIndex = newIndex
+			var nextIndex = optionIndex + 1
+			var nextOptionDisabled bool = true
+			for nextOptionDisabled == true {
+				if nextIndex < optionCount {
+					nextOptionDisabled = menuOptions[nextIndex].Disabled
+					if nextOptionDisabled == false {
+						optionIndex = nextIndex
+						break
+					}
+				} else {
+					break
+				}
+				nextIndex++
 			}
 		case keyboard.KeyEnter:
 			selectedOption := menuOptions[optionIndex]
 			selectedOption.Callback()
-			cursorShow()
 			drawing = false
 		}
 	})
@@ -76,7 +92,7 @@ func Menu(title string, options []Option) {
 			backUp()
 		}
 		content = template()
-		split_count()
+		splitCount()
 		if content != lastContent {
 			for i, line := range lines {
 				if len(lastLines) > i {
@@ -108,7 +124,9 @@ func template() (menu string) {
 	optionCount = len(menuOptions)
 	menu = Style(menuTitle, BOLD, GREEN) + "\n"
 	for i, option := range menuOptions {
-		if i == optionIndex {
+		if option.Disabled == true {
+			menu += Style(fmt.Sprintf("[ ] %s\n", option.Label), DIM)
+		} else if i == optionIndex {
 			menu += Style(selected, MAGENTA) + fmt.Sprintf(" %s\n", option.Label)
 		} else {
 			menu += fmt.Sprintf("[ ] %s\n", option.Label)
@@ -117,14 +135,31 @@ func template() (menu string) {
 	return
 }
 
+func firstAvailable() {
+	if menuOptions[0].Disabled == true {
+		for _, option := range menuOptions {
+			if option.Disabled == true {
+				optionIndex++
+			}
+		}
+	}
+}
+
+func makeRoom() {
+	for i := 0; i < lineCount; i++ {
+		fmt.Printf("\n")
+	}
+	linePrev(lineCount)
+}
+
 func replaceLine(line string) {
 	clearLine()
 	fmt.Printf("%s\r", line)
 }
 
-func split_count() {
+func splitCount() {
 	lines = strings.Split(content, "\n")
-	lineCount = len(lines) - 1
+	lineCount = len(lines)
 }
 
 func last() {
