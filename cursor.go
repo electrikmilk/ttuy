@@ -15,6 +15,7 @@ C = FORWARD
 D = BACKWARD
 E = NEXT
 F = PREV
+G = BEGIN
 r;c H = CUSTOM
 K = ERASE IN LINE
 J = ERASE IN DISPLAY
@@ -37,14 +38,6 @@ func lineDown(lines int) {
 	fmt.Printf(CSI+"%dB", lines)
 }
 
-func cursorFwd(columns int) {
-	fmt.Printf(CSI+"%dC", columns)
-}
-
-func cursorBack(columns int) {
-	fmt.Printf(CSI+"%dD", columns)
-}
-
 func lineNext(lines int) {
 	fmt.Printf(CSI+"%dE", lines)
 	currentLine++
@@ -54,8 +47,25 @@ func linePrev(lines int) {
 	fmt.Printf(CSI+"%dF", lines)
 }
 
+func lineFeed() {
+	lineNext(1)
+	scrollUp(1)
+}
+
 func cursor(row int, col int) {
 	fmt.Printf(CSI+"%d;%dH", row, col)
+}
+
+func cursorFwd(columns int) {
+	fmt.Printf(CSI+"%dC", columns)
+}
+
+func cursorBack(columns int) {
+	fmt.Printf(CSI+"%dD", columns)
+}
+
+func cursorStart() {
+	fmt.Print(CSI + "1G")
 }
 
 func cursorHide() {
@@ -80,9 +90,4 @@ func scrollUp(lines int) {
 
 func scrollDown(lines int) {
 	fmt.Printf(CSI+"%dT", lines)
-}
-
-func lineFeed() {
-	lineNext(1)
-	scrollUp(1)
 }
