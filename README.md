@@ -1,4 +1,5 @@
 # ttuy
+
 Basic Terminal TUI
 
 ```console
@@ -22,6 +23,9 @@ for i := 0; i <= 100; i++ {
 Typewriter
 ```go
 ttuy.Typewriter("Typed out one character at a time")
+
+// Or time it specifically...
+ttuy.TypewriterTimed("Typed out at duration...", 1000)
 ```
 
 Print contents of file, some ASCII art for example...

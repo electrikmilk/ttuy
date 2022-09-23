@@ -9,24 +9,33 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
 )
+
+func EOL() (EOL string) {
+	EOL = "\n"
+	if runtime.GOOS == "windows" {
+		EOL = "\r\n"
+	}
+	return
+}
 
 func File(name string) {
 	bytes, err := os.ReadFile(name)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf(string(bytes[:]))
+	fmt.Printf(string(bytes[:]) + EOL())
 }
 
 func Progress(status int) {
 	cursorHide()
 	fmt.Printf(bar(status)+" %d%%\r", status)
 	if status == 100 {
-		fmt.Printf("\n")
+		fmt.Printf(EOL())
 		cursorShow()
 	}
 }
@@ -37,11 +46,11 @@ func bar(status int) (bar string) {
 	if err != nil {
 		panic(err)
 	}
-	cols, _ := strconv.Atoi(strings.TrimSuffix(string(out), "\n"))
-	prog_blocks := int(prog * float64(cols))
-	remain := cols - prog_blocks
+	cols, _ := strconv.Atoi(strings.TrimSuffix(string(out), EOL()))
+	progBlocks := int(prog * float64(cols))
+	remain := cols - progBlocks
 	bar = "["
-	for i := 0; i < prog_blocks; i++ {
+	for i := 0; i < progBlocks; i++ {
 		bar += "="
 	}
 	for i := 0; i < remain; i++ {
@@ -58,12 +67,16 @@ func Ask(prompt string, store *string) {
 	if scanner.Scan() {
 		*store = scanner.Text()
 	}
-	fmt.Printf("\n")
+	fmt.Printf(EOL())
 }
 
-func Typewriter(str string) {
+func Typewriter(message string) {
+	TypewriterTimed(message, 100)
+}
+
+func TypewriterTimed(message string, duration time.Duration) {
 	cursorHide()
-	var strChars []string = strings.Split(str, "")
+	var strChars []string = strings.Split(message, "")
 	var chars int = 0
 	for i := 0; i <= len(strChars); i++ {
 		for _, char := range strChars[:i] {
@@ -71,8 +84,8 @@ func Typewriter(str string) {
 		}
 		fmt.Printf("\r")
 		chars++
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(duration * time.Millisecond)
 	}
-	fmt.Printf("\n")
+	fmt.Printf(EOL())
 	cursorShow()
 }

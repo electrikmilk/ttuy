@@ -36,10 +36,17 @@ type Option struct {
 }
 
 func Menu(title string, options []Option) {
-	cursorHide()
 	menuTitle = title
 	menuOptions = options
 	drawing = true
+	cursorHide()
+	content = template()
+	split_count()
+	var makeRoom int = lineCount + 1
+	for i := 0; i < makeRoom; i++ {
+		fmt.Printf("\n")
+	}
+	linePrev(makeRoom)
 	go readKeys(func(key any) {
 		switch key {
 		case keyboard.KeyArrowUp:
