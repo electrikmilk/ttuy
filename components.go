@@ -70,6 +70,24 @@ func Ask(prompt string, store *string) {
 	fmt.Print(eol())
 }
 
+func YesNo(prompt string) (proceed bool) {
+	var input string
+	for {
+		Ask(prompt+" (y/n)?", &input)
+		input = strings.ToLower(input)
+		if input == "y" || input == "n" {
+			if input == "y" {
+				proceed = true
+			} else if input == "n" {
+				proceed = false
+			}
+			break
+		}
+		input = ""
+	}
+	return
+}
+
 func Typewriter(message string) {
 	TypewriterTimed(message, 100)
 }
