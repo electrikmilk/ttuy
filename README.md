@@ -48,7 +48,6 @@ ttuy.Menu("Title", []ttuy.Option{
       Disabled: true,
     },
     // ...
-  },
 })
 ```
 
