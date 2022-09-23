@@ -1,6 +1,6 @@
 # ttuy
 
-Basic Terminal TUI
+Easy-to-use Procedural Terminal TUI
 
 ```console
 go get github.com/electrikmilk/ttuy
@@ -12,28 +12,21 @@ import "github.com/electrikmilk/ttuy"
 
 ## Components
 
-Progress bar
+### User Input
+
 ```go
-for i := 0; i <= 100; i++ {
-    ttuy.Progress(i)
-    time.Sleep(100 * time.Millisecond)
-}
+var name string
+ttuy.Ask("Enter your name", &name)
 ```
 
-Typewriter
-```go
-ttuy.Typewriter("Typed out one character at a time")
+### Styled Output
 
-// Or time it specifically...
-ttuy.TypewriterTimed("Typed out at duration...", 1000)
+```go
+ttuy.Style("Text", ttuy.BOLD, ttuy.GREEN) // returns string
 ```
 
-Print contents of file, some ASCII art for example...
-```go
-ttuy.File("logo.txt")
-```
+### Menu
 
-Menu
 ``` go
 ttuy.Menu("Title", []ttuy.Option{
     {
@@ -48,20 +41,32 @@ ttuy.Menu("Title", []ttuy.Option{
         //
       },
     },
-    ...
+    // ...
   },
 })
 ```
 
-Input prompt
+### Progress bar
+
 ```go
-var name string
-ttuy.Ask("Enter your name", &name)
+for i := 0; i <= 100; i++ {
+    ttuy.Progress(i)
+    time.Sleep(100 * time.Millisecond)
+}
 ```
 
-Style output
+### Typewriter
+
 ```go
-ttuy.Style("Text", ttuy.BOLD, ttuy.GREEN) // returns string
+ttuy.Typewriter("Typed out one character at a time")
+
+// Or time it specifically...
+ttuy.TypewriterTimed("Typed out at duration...", 1000)
+```
+
+Print contents of file, some ASCII art for example...
+```go
+ttuy.File("logo.txt")
 ```
 
 ## Example
