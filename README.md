@@ -22,7 +22,7 @@ ttuy.Ask("Enter your name", &name)
 ### Styled Output
 
 ```go
-ttuy.Style("Text", ttuy.BOLD, ttuy.GREEN) // returns string
+ttuy.Style("Text", ttuy.Bold, ttuy.Green) // returns string
 ```
 
 ### Menu
