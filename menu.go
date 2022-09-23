@@ -43,7 +43,7 @@ func Menu(title string, options []Option) {
 	menuOptions = options
 	drawing = true
 	setup()
-	go readKeys(handleKeys)
+	go readKeys(handleMenuKeys)
 	for {
 		if !drawing {
 			break
@@ -88,7 +88,7 @@ func makeRoom() {
 	linePrev(lineCount)
 }
 
-func handleKeys(key any) {
+func handleMenuKeys(key any) {
 	switch key {
 	case keyboard.KeyArrowUp:
 		var nextIndex = optionIndex - 1
