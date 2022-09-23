@@ -15,10 +15,10 @@ import (
 	"time"
 )
 
-func EOL() (EOL string) {
-	EOL = "\n"
+func eol() (eol string) {
+	eol = "\n"
 	if runtime.GOOS == "windows" {
-		EOL = "\r\n"
+		eol = "\r\n"
 	}
 	return
 }
@@ -28,25 +28,25 @@ func File(name string) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf(string(bytes[:]) + EOL())
+	fmt.Printf(string(bytes) + eol())
 }
 
 func Progress(status int) {
 	cursorHide()
 	fmt.Printf(bar(status)+" %d%%\r", status)
 	if status == 100 {
-		fmt.Printf(EOL())
+		fmt.Print(eol())
 		cursorShow()
 	}
 }
 
 func bar(status int) (bar string) {
-	var prog float64 = float64(status) / float64(100)
+	var prog = float64(status) / float64(100)
 	out, err := exec.Command("tput", "cols").Output()
 	if err != nil {
 		panic(err)
 	}
-	cols, _ := strconv.Atoi(strings.TrimSuffix(string(out), EOL()))
+	cols, _ := strconv.Atoi(strings.TrimSuffix(string(out), eol()))
 	progBlocks := int(prog * float64(cols))
 	remain := cols - progBlocks
 	bar = "["
@@ -61,13 +61,13 @@ func bar(status int) (bar string) {
 }
 
 func Ask(prompt string, store *string) {
-	prompt = Style(fmt.Sprintf(" %s: ", prompt), BOLD, INVERT)
+	prompt = Style(fmt.Sprintf(" %s: ", prompt), Bold, Inverted)
 	fmt.Printf("%s ", prompt)
 	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {
 		*store = scanner.Text()
 	}
-	fmt.Printf(EOL())
+	fmt.Print(eol())
 }
 
 func Typewriter(message string) {
@@ -76,8 +76,8 @@ func Typewriter(message string) {
 
 func TypewriterTimed(message string, duration time.Duration) {
 	cursorHide()
-	var strChars []string = strings.Split(message, "")
-	var chars int = 0
+	var strChars = strings.Split(message, "")
+	var chars int
 	for i := 0; i <= len(strChars); i++ {
 		for _, char := range strChars[:i] {
 			fmt.Print(char)
@@ -86,6 +86,6 @@ func TypewriterTimed(message string, duration time.Duration) {
 		chars++
 		time.Sleep(duration * time.Millisecond)
 	}
-	fmt.Printf(EOL())
+	fmt.Print(eol())
 	cursorShow()
 }

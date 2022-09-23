@@ -83,7 +83,7 @@ func firstAvailable() {
 
 func makeRoom() {
 	for i := 0; i < lineCount; i++ {
-		fmt.Print(EOL())
+		fmt.Print(eol())
 	}
 	linePrev(lineCount)
 }
@@ -129,15 +129,15 @@ func handleKeys(key any) {
 
 func template() (menu string) {
 	if lastOptionIndex != optionIndex {
-		menu = Style(menuTitle, BOLD, GREEN) + EOL()
+		menu = Style(menuTitle, Bold, Green) + eol()
 		for i, option := range menuOptions {
 			switch {
 			case option.Disabled:
-				menu += Style(fmt.Sprintf("[ ] %s"+EOL(), option.Label), DIM)
+				menu += Style(fmt.Sprintf("[ ] %s"+eol(), option.Label), Dim)
 			case i == optionIndex:
-				menu += Style(selected, MAGENTA) + fmt.Sprintf(" %s"+EOL(), option.Label)
+				menu += Style(selected, Magenta) + fmt.Sprintf(" %s"+eol(), option.Label)
 			default:
-				menu += fmt.Sprintf("[ ] %s"+EOL(), option.Label)
+				menu += fmt.Sprintf("[ ] %s"+eol(), option.Label)
 			}
 		}
 		lastMenuContent = menu
@@ -176,7 +176,7 @@ func replaceLine(line string) {
 }
 
 func splitCount() {
-	lines = strings.Split(content, EOL())
+	lines = strings.Split(content, eol())
 	lineCount = len(lines)
 }
 
