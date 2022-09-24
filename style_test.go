@@ -10,6 +10,15 @@ import (
 )
 
 func TestStyle(t *testing.T) {
+	fmt.Println(Style("Text", Bold))
+	fmt.Println(Style("Text", Italic))
+	fmt.Println(Style("Text", Underlined))
+	fmt.Println(Style("Text", Dim))
+	fmt.Println(Style("Text", Blink))
+	fmt.Println(Style("Text", Inverted))
+	fmt.Println(Style("Text", Hidden))
+	fmt.Println(Style("Text", Crossed))
+
 	fmt.Println(Style("Text", Bold, Red))
 	fmt.Println(Style("Text", Bold, Yellow))
 	fmt.Println(Style("Text", Bold, Green))
