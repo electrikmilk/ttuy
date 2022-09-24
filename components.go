@@ -73,7 +73,7 @@ func Ask(prompt string, store *string) {
 func YesNo(prompt string) (proceed bool) {
 	var input string
 	for {
-		Ask(prompt+" (y/n)?", &input)
+		Ask(prompt+" (y/n)", &input)
 		input = strings.ToLower(input)
 		if input == "y" || input == "n" {
 			if input == "y" {
