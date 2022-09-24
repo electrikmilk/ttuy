@@ -51,7 +51,7 @@ func bar(status int) (bar string) {
 	remain := cols - progBlocks
 	bar = "["
 	for i := 0; i < progBlocks; i++ {
-		bar += "="
+		bar += Style("█", Magenta)
 	}
 	for i := 0; i < remain; i++ {
 		bar += " "
