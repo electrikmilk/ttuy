@@ -39,7 +39,7 @@ if Prompt("Install Program? This will take up 586kb.") {
 YesNo("Are you sure?")
 ```
 
-![YesNo](https://user-images.githubusercontent.com/4368524/192075185-e26d03e5-e689-4c54-8b26-8464f1aabe55.png)
+![YesNo](https://user-images.githubusercontent.com/4368524/192075315-f9b87357-94da-4fb5-9184-e292ae941b9d.png)
 
 ### Styled Output
 
