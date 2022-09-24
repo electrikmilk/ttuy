@@ -92,7 +92,7 @@ ttuy.Table(headers, rows)
 
 ![Table](https://user-images.githubusercontent.com/4368524/192122215-eaef5af4-e08f-49c3-a401-9c515655dc34.png)
 
-## Progress Bar
+### Progress Bar
 
 ```go
 for i := 0; i <= 100; i++ {
