@@ -92,16 +92,16 @@ ttuy.Table(headers, rows)
 
 ![Screen Shot 2022-09-23 at 21 46 59](https://user-images.githubusercontent.com/4368524/192074972-ec501f77-a511-42ba-b2c1-cf0ac8a11661.png)
 
-### Progress bar
+## Progress Bar
 
 ```go
 for i := 0; i <= 100; i++ {
-    ttuy.Progress(i)
+    ttuy.ProgressBar(i)
     time.Sleep(100 * time.Millisecond)
 }
 ```
 
-![Progress](https://user-images.githubusercontent.com/4368524/192031937-7c725cb2-b2eb-44ee-ba55-3f581ffe6d1c.gif)
+![ProgressBar](https://user-images.githubusercontent.com/4368524/192120185-cb9edca5-2fb3-4317-86c6-a8cc4e479770.gif)
 
 ### Spinners
 
