@@ -11,9 +11,9 @@ import (
 	"time"
 )
 
-func TestProgress(t *testing.T) {
+func TestProgressBar(t *testing.T) {
 	for i := 0; i <= 100; i++ {
-		Progress(i)
+		ProgressBar(i)
 		time.Sleep(50 * time.Millisecond)
 	}
 }
