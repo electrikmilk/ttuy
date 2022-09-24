@@ -29,15 +29,18 @@ func TestAsk(t *testing.T) {
 	if err != nil {
 		t.Error(err)
 	}
-	w.Close()
+	err = w.Close()
+	if err != nil {
+		panic(err)
+	}
 
 	// Restore stdin right after the test.
 	defer func(v *os.File) { os.Stdin = v }(os.Stdin)
 	os.Stdin = r
 
-	var recieved string
-	Ask("Enter your name", &recieved)
-	fmt.Println("You entered:", recieved)
+	var received string
+	Ask("Enter your name", &received)
+	fmt.Println("You entered:", received)
 }
 
 func TestTypewriter(t *testing.T) {

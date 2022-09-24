@@ -6,7 +6,7 @@
     <a href="https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
 </p>
 
-**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use procedural TUI Framework. Procedural as in, no models, no dealing with abstractions, just run a function and it just works. It uses ANSI escape sequences for colors and manipulating the cursor.
+**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use procedural TUI Framework. Procedural as in, no models, no dealing with abstractions, just run a function, and it just works. It uses ANSI escape sequences for colors and manipulating the cursor.
 
 ```console
 go get github.com/electrikmilk/ttuy

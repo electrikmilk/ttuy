@@ -11,12 +11,10 @@ import (
 
 type SpinnerStyle string
 
-const (
-	Ticker    SpinnerStyle = "ticker"
-	DotDotDot              = "dotdotdot"
-	Throbber               = "throbber"
-	Blinker                = "blinker"
-)
+const Ticker SpinnerStyle = "ticker"
+const DotDotDot SpinnerStyle = "dotdotdot"
+const Throbber SpinnerStyle = "throbber"
+const Blinker SpinnerStyle = "blinker"
 
 var ticks = []string{"|", "/", "—", "\\"}
 var dots = []string{"", ".", "..", "..."}
