@@ -1,6 +1,12 @@
+![ttuy](https://user-images.githubusercontent.com/4368524/192105220-b950d506-7cd0-43da-ae55-6dc13d249dc0.png)
+
 # ttuy
 
-Easy-to-Use Procedural TUI Framework.
+<p>
+    <a href="https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
+</p>
+
+ttuy (pronounced tee-tee-YU-Y or like TUI) is an easy-to-use procedural, functional TUI Framework. It is based on using ANSI escape codes to use colors and manipulate the cursor.
 
 ```console
 go get github.com/electrikmilk/ttuy
@@ -10,7 +16,7 @@ go get github.com/electrikmilk/ttuy
 import "github.com/electrikmilk/ttuy"
 ```
 
-## Components
+## Widgets
 
 ### User Input
 
@@ -24,7 +30,7 @@ ttuy.Ask("Enter your name", &name)
 ### Prompt
 
 ```go
-if Prompt("Install Program? This will take up 586kb.") {
+if ttuy.Prompt("Install Program? This will take up 586kb.") {
 	fmt.Println("Installing...")
 } else {
 	fmt.Println("Installation Canceled.")
@@ -36,7 +42,7 @@ if Prompt("Install Program? This will take up 586kb.") {
 ### Yes/No Prompt
 
 ```go
-YesNo("Are you sure?")
+ttuy.YesNo("Are you sure?")
 ```
 
 ![YesNo](https://user-images.githubusercontent.com/4368524/192075315-f9b87357-94da-4fb5-9184-e292ae941b9d.png)
@@ -76,12 +82,12 @@ ttuy.Menu("Title", []ttuy.Option{
 
 ```go
 var headers = []string{"Header 1", "Header 2", "Header 3", "Header 4"}
-var rows []row
+var rows []ttuy.row
 for i := 0; i < 5; i++ {
 	var rowRows = []string{"Cell 1", "Cell 2", "Cell 3", "Cell 4"}
-	rows = append(rows, row{columns: rowRows})
+	rows = append(rows, ttuy.row{columns: rowRows})
 }
-Table(headers, rows)
+ttuy.Table(headers, rows)
 ```
 
 ![Screen Shot 2022-09-23 at 21 46 59](https://user-images.githubusercontent.com/4368524/192074972-ec501f77-a511-42ba-b2c1-cf0ac8a11661.png)
