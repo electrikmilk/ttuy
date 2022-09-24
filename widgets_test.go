@@ -6,6 +6,7 @@ package ttuy
 
 import (
 	"fmt"
+	"os"
 	"testing"
 	"time"
 )
@@ -18,9 +19,25 @@ func TestProgress(t *testing.T) {
 }
 
 func TestAsk(t *testing.T) {
-	var name string
-	Ask("Enter your name", &name)
-	fmt.Println(name)
+	input := []byte("Brandon")
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = w.Write(input)
+	if err != nil {
+		t.Error(err)
+	}
+	w.Close()
+
+	// Restore stdin right after the test.
+	defer func(v *os.File) { os.Stdin = v }(os.Stdin)
+	os.Stdin = r
+
+	var recieved string
+	Ask("Enter your name", &recieved)
+	fmt.Println("You entered:", recieved)
 }
 
 func TestTypewriter(t *testing.T) {
