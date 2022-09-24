@@ -33,6 +33,7 @@ func wait() {
 	time.Sleep(30 * time.Millisecond)
 }
 
+// Ask prints your prompt and waits for input from os.Stdin
 func Ask(prompt string, store *string) {
 	prompt = Style(fmt.Sprintf(" %s: ", prompt), Bold, Inverted)
 	fmt.Printf("%s ", prompt)
@@ -46,6 +47,7 @@ func Ask(prompt string, store *string) {
 	fmt.Print(eol())
 }
 
+// YesNo prints a prompt that waits for "y" or "n" from os.Stdin and returns a boolean based on the input
 func YesNo(prompt string) (proceed bool) {
 	var input string
 	for {
@@ -64,10 +66,12 @@ func YesNo(prompt string) (proceed bool) {
 	return
 }
 
+// Typewriter prints characters in message out one at a time
 func Typewriter(message string) {
 	TypewriterTimed(message, 100)
 }
 
+// TypewriterTimed prints characters in message out one at a time at duration
 func TypewriterTimed(message string, duration time.Duration) {
 	cursorHide()
 	var strChars = strings.Split(message, "")

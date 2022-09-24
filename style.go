@@ -58,6 +58,7 @@ const LightMagentaBg SGR = 105
 const LightCyanBg SGR = 106
 const LightWhiteBg SGR = 107
 
+// Style formats str using styles to prefix str with SGR sequences
 func Style(str string, styles ...SGR) (styled string) {
 	for _, s := range styles {
 		styled += fmt.Sprintf("\033[%dm", s)

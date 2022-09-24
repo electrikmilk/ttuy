@@ -11,6 +11,7 @@ import (
 	"strings"
 )
 
+// ProgressBar prints a progress bar
 func ProgressBar(status int) {
 	cursorHide()
 	bar(status)

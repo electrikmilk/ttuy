@@ -14,6 +14,7 @@ var optionSelected int
 var lastOptionSelected = -1
 var promptMenu = true
 
+// Prompt prints a prompt for the user to choose yes or no using the arrow keys then returns a boolean based on the option chosen
 func Prompt(prompt string) (proceed bool) {
 	cursorHide()
 	fmt.Print(eol() + Style(prompt, Bold, Green) + eol())

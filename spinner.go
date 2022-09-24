@@ -30,6 +30,7 @@ var blinks = []string{
 
 var stop = make(chan bool)
 
+// Spinner prints a progress indicator in style until StopSpinner() is called
 func Spinner(status string, style SpinnerStyle) {
 	cursorHide()
 	fmt.Print(eol())
