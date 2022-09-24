@@ -90,7 +90,7 @@ for i := 0; i < 5; i++ {
 ttuy.Table(headers, rows)
 ```
 
-![Screen Shot 2022-09-23 at 21 46 59](https://user-images.githubusercontent.com/4368524/192074972-ec501f77-a511-42ba-b2c1-cf0ac8a11661.png)
+![Table](https://user-images.githubusercontent.com/4368524/192122215-eaef5af4-e08f-49c3-a401-9c515655dc34.png)
 
 ## Progress Bar
 
