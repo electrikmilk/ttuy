@@ -108,7 +108,7 @@ for i := 0; i <= 100; i++ {
 ```go
 go Spinner("Indeterminate Progress", ttuy.Ticker | ttuy.DotDotDot | ttuy.Throbber | ttuy.Blinker)
 for i := 0; i < 50; i++ {
-time.Sleep(30 * time.Millisecond)
+    time.Sleep(30 * time.Millisecond)
 }
 StopSpinner()
 ```
