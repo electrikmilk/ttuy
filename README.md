@@ -103,6 +103,18 @@ for i := 0; i <= 100; i++ {
 
 ![Progress](https://user-images.githubusercontent.com/4368524/192031937-7c725cb2-b2eb-44ee-ba55-3f581ffe6d1c.gif)
 
+### Spinners
+
+```go
+go Spinner("Indeterminate Progress", ttuy.Ticker | ttuy.DotDotDot | ttuy.Throbber | ttuy.Blinker)
+for i := 0; i < 50; i++ {
+time.Sleep(30 * time.Millisecond)
+}
+StopSpinner()
+```
+
+![Spinner](https://user-images.githubusercontent.com/4368524/192109402-bc6691f9-e988-44de-b249-2c2b0f9a7bd0.png)
+
 ### Typewriter
 
 ```go
