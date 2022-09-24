@@ -30,6 +30,7 @@ var optionIndex int
 var optionCount int
 
 var selected = "[x]"
+var notSelected = "[ ]"
 var drawing = true
 
 type Option struct {
@@ -133,11 +134,11 @@ func template() (menu string) {
 		for i, option := range menuOptions {
 			switch {
 			case option.Disabled:
-				menu += Style(fmt.Sprintf("[ ] %s"+eol(), option.Label), Dim)
+				menu += Style(fmt.Sprintf(notSelected+" %s"+eol(), option.Label), Dim)
 			case i == optionIndex:
 				menu += Style(selected, Magenta) + fmt.Sprintf(" %s"+eol(), option.Label)
 			default:
-				menu += fmt.Sprintf("[ ] %s"+eol(), option.Label)
+				menu += fmt.Sprintf(notSelected+" %s"+eol(), option.Label)
 			}
 		}
 		lastMenuContent = menu
