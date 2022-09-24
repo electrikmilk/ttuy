@@ -31,7 +31,7 @@ if Prompt("Install Program? This will take up 586kb.") {
 }
 ```
 
-![Prompt](https://user-images.githubusercontent.com/4368524/192075069-9595cb54-5b9a-4095-a46d-dccc63924e6e.png)
+![Prompt](https://user-images.githubusercontent.com/4368524/192075153-653de8e4-ba7b-4294-8dc2-73bcf264c53a.gif)
 
 ### Yes/No Prompt
 
@@ -39,7 +39,7 @@ if Prompt("Install Program? This will take up 586kb.") {
 YesNo("Are you sure?")
 ```
 
-![YesNo](https://user-images.githubusercontent.com/4368524/192075153-653de8e4-ba7b-4294-8dc2-73bcf264c53a.gif)
+![YesNo](https://user-images.githubusercontent.com/4368524/192075185-e26d03e5-e689-4c54-8b26-8464f1aabe55.png)
 
 ### Styled Output
 
