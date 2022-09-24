@@ -20,7 +20,7 @@ func Table(headers []string, rows []row) {
 	calcDimensions(&headers, &rows)
 	var line = makeLine(&headers)
 	fmt.Println(line)
-	fmt.Print("|")
+	fmt.Print(Style("|", Dim))
 	for h, header := range headers {
 		fmt.Printf(" %s", header)
 		if len(header) < dimensions[h] {
@@ -29,12 +29,12 @@ func Table(headers []string, rows []row) {
 				fmt.Print(" ")
 			}
 		}
-		fmt.Print(" |")
+		fmt.Print(Style(" |", Dim))
 	}
 	fmt.Print(eol())
 	fmt.Println(line)
 	for _, row := range rows {
-		fmt.Print("|")
+		fmt.Print(Style("|", Dim))
 		for c, column := range row.columns {
 			fmt.Printf(" %s", column)
 			if len(column) < dimensions[c] {
@@ -43,7 +43,7 @@ func Table(headers []string, rows []row) {
 					fmt.Print(" ")
 				}
 			}
-			fmt.Print(" |")
+			fmt.Print(Style(" |", Dim))
 		}
 		fmt.Print(eol())
 	}
@@ -59,6 +59,7 @@ func makeLine(headers *[]string) (line string) {
 		}
 		line += "+"
 	}
+	line = Style(line, Dim)
 	return
 }
 
