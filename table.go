@@ -18,34 +18,34 @@ type row struct {
 func Table(headers []string, rows []row) {
 	checkEven(&headers, &rows)
 	calcDimensions(&headers, &rows)
-	var line string = makeLine(&headers)
+	var line = makeLine(&headers)
 	fmt.Println(line)
-	fmt.Printf("|")
+	fmt.Print("|")
 	for h, header := range headers {
 		fmt.Printf(" %s", header)
 		if len(header) < dimensions[h] {
 			var spaceDiff = dimensions[h] - len(header)
 			for i := 0; i < spaceDiff; i++ {
-				fmt.Printf(" ")
+				fmt.Print(" ")
 			}
 		}
-		fmt.Printf(" |")
+		fmt.Print(" |")
 	}
-	fmt.Printf("\n")
+	fmt.Print(eol())
 	fmt.Println(line)
 	for _, row := range rows {
-		fmt.Printf("|")
+		fmt.Print("|")
 		for c, column := range row.columns {
 			fmt.Printf(" %s", column)
 			if len(column) < dimensions[c] {
 				var spaceDiff = dimensions[c] - len(column)
 				for i := 0; i < spaceDiff; i++ {
-					fmt.Printf(" ")
+					fmt.Print(" ")
 				}
 			}
-			fmt.Printf(" |")
+			fmt.Print(" |")
 		}
-		fmt.Printf("\n")
+		fmt.Print(eol())
 	}
 	fmt.Println(line)
 }
@@ -53,7 +53,7 @@ func Table(headers []string, rows []row) {
 func makeLine(headers *[]string) (line string) {
 	line = "+"
 	for h := range *headers {
-		var columnLength int = dimensions[h] + 2
+		var columnLength = dimensions[h] + 2
 		for idx := 0; idx < columnLength; idx++ {
 			line += "-"
 		}
@@ -63,9 +63,9 @@ func makeLine(headers *[]string) (line string) {
 }
 
 func checkEven(headers *[]string, rows *[]row) {
-	var headersCount int = len(*headers)
+	var headersCount = len(*headers)
 	for _, row := range *rows {
-		var rowCount int = len(row.columns)
+		var rowCount = len(row.columns)
 		if rowCount < headersCount || rowCount > headersCount {
 			fmt.Println(headers, rows)
 			panic("Uneven table! Number of columns in rows and header columns do not match!")
