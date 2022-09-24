@@ -67,6 +67,9 @@ func Ask(prompt string, store *string) {
 	if scanner.Scan() {
 		*store = scanner.Text()
 	}
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
 	fmt.Print(eol())
 }
 
