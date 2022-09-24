@@ -1,6 +1,6 @@
 # ttuy
 
-Easy-to-use Procedural Terminal TUI
+Easy-to-Use Procedural TUI Framework.
 
 ```console
 go get github.com/electrikmilk/ttuy
