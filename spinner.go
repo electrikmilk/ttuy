@@ -27,7 +27,7 @@ var throbs = []string{
 }
 var blinks = []string{
 	Style("•", Dim),
-	Style("•", Cyan, BlinkFast),
+	Style("•", Cyan, Blink),
 }
 
 var stop = make(chan bool)
