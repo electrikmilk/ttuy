@@ -23,21 +23,21 @@ func ProgressBar(status int) {
 }
 
 func bar(status int) (bar string) {
-	var prog = float64(status) / float64(100)
+	var progress = float64(status) / float64(100)
 	out, err := exec.Command("tput", "cols").Output()
 	if err != nil {
 		panic(err)
 	}
 	cols, _ := strconv.Atoi(strings.TrimSuffix(string(out), eol()))
-	progBlocks := int(prog * float64(cols))
-	remain := cols - progBlocks
+	progressBlocks := int(progress * float64(cols))
+	remain := cols - progressBlocks
 	if status == 0 {
 		for i := 0; i < 3; i++ {
 			lineFeed()
 		}
 		linePrev(3)
 		fmt.Print("\u250C")
-		for i := 0; i < (progBlocks + remain); i++ {
+		for i := 0; i < (progressBlocks + remain); i++ {
 			fmt.Print("\u2500")
 		}
 		fmt.Print("\u2510")
@@ -45,7 +45,7 @@ func bar(status int) (bar string) {
 	lineNext(1)
 	// middle
 	fmt.Print("\u2502")
-	for i := 0; i < progBlocks; i++ {
+	for i := 0; i < progressBlocks; i++ {
 		fmt.Print(Style("█", Cyan))
 	}
 	for i := 0; i < remain; i++ {
@@ -56,7 +56,7 @@ func bar(status int) (bar string) {
 	if status == 0 {
 		fmt.Print(eol())
 		fmt.Print("\u2514")
-		for i := 0; i < (progBlocks + remain); i++ {
+		for i := 0; i < (progressBlocks + remain); i++ {
 			fmt.Print("\u2500")
 		}
 		fmt.Print("\u2518")
