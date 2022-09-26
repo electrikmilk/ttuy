@@ -46,14 +46,14 @@ func Spinner(status string, style SpinnerStyle) {
 				for i := 0; i < len(ticks); i++ {
 					clearLine()
 					fmt.Print(Style(ticks[i], Cyan))
-					fmt.Print(Style(fmt.Sprintf(" %s", status), Bold))
+					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
 					time.Sleep(100 * time.Millisecond)
 				}
 			case DotDotDot:
 				for i := 0; i < len(dots); i++ {
 					clearLine()
-					fmt.Print(Style(fmt.Sprintf("%s", status), Bold))
+					fmt.Print(Style(status, Bold))
 					fmt.Print(Style(dots[i], Dim))
 					fmt.Print("\r")
 					time.Sleep(300 * time.Millisecond)
@@ -62,7 +62,7 @@ func Spinner(status string, style SpinnerStyle) {
 				for i := 0; i < len(throbs); i++ {
 					clearLine()
 					fmt.Print(throbs[i])
-					fmt.Print(Style(fmt.Sprintf(" %s", status), Bold))
+					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
 					time.Sleep(200 * time.Millisecond)
 				}
@@ -70,7 +70,7 @@ func Spinner(status string, style SpinnerStyle) {
 				for i := 0; i < len(blinks); i++ {
 					clearLine()
 					fmt.Print(blinks[i])
-					fmt.Print(Style(fmt.Sprintf(" %s", status), Bold))
+					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
 					time.Sleep(500 * time.Millisecond)
 				}
