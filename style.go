@@ -61,8 +61,8 @@ const LightWhiteBg SGR = 107
 // Style formats str using styles to prefix str with SGR sequences
 func Style(str string, styles ...SGR) (styled string) {
 	for _, s := range styles {
-		styled += fmt.Sprintf("\033[%dm", s)
+		styled += fmt.Sprintf(CSI+"%dm", s)
 	}
-	styled += str + "\033[0m"
+	styled += str + CSI + "0m"
 	return
 }
