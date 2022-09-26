@@ -21,19 +21,16 @@ func eol() (eol string) {
 	return
 }
 
-func File(name string) {
-	bytes, err := os.ReadFile(name)
+// File print the content of the file at path
+func File(path string) {
+	bytes, err := os.ReadFile(path)
 	if err != nil {
 		panic(err)
 	}
 	fmt.Printf(string(bytes) + eol())
 }
 
-func wait() {
-	time.Sleep(30 * time.Millisecond)
-}
-
-// Ask prints your prompt and waits for input from os.Stdin
+// Ask prints your prompt and feeds input from os.Stdin into store
 func Ask(prompt string, store *string) {
 	prompt = Style(fmt.Sprintf(" %s: ", prompt), Bold, Inverted)
 	fmt.Printf("%s ", prompt)

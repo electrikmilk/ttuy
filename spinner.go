@@ -31,6 +31,7 @@ var blinks = []string{
 var stop = make(chan bool)
 
 // Spinner prints a progress indicator in style until StopSpinner() is called
+// You must use a goroutine when running this function (e.g. go Spinner(...))
 func Spinner(status string, style SpinnerStyle) {
 	cursorHide()
 	fmt.Print(eol())
@@ -78,6 +79,7 @@ func Spinner(status string, style SpinnerStyle) {
 	}
 }
 
+// StopSpinner stops the current spinner
 func StopSpinner() {
 	stop <- true
 	clearLine()
