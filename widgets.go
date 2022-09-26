@@ -44,6 +44,20 @@ func Ask(prompt string, store *string) {
 	fmt.Print(eol())
 }
 
+// AskSecret prints your prompt and feeds input from os.Stdin into store but hides the input
+func AskSecret(prompt string, store *string) {
+	prompt = Style(fmt.Sprintf("\U0001F512 %s: ", prompt), Bold, RedBg, Black)
+	fmt.Printf("%s "+CSI+"8m", prompt)
+	scanner := bufio.NewScanner(os.Stdin)
+	if scanner.Scan() {
+		*store = scanner.Text()
+	}
+	if err := scanner.Err(); err != nil {
+		panic(err)
+	}
+	fmt.Print(CSI + "0m" + eol())
+}
+
 // YesNo prints a prompt that waits for "y" or "n" from os.Stdin and returns a boolean based on the input
 func YesNo(prompt string) (proceed bool) {
 	var input string
