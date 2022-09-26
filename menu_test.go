@@ -33,4 +33,34 @@ func TestMenu(*testing.T) {
 		},
 	})
 	fmt.Println(chosen)
+	Menu("Title", []Option{
+		{
+			Label: "Option 1",
+			Callback: func() {
+				chosen = "You chose option 1."
+			},
+		},
+		{
+			Label: "Option 2",
+			Callback: func() {
+				chosen = "You chose option 2."
+			},
+		},
+		{
+			Label: "Option 3",
+			Callback: func() {
+				chosen = "You chose option 3."
+			},
+		},
+	})
+	fmt.Println(chosen)
+	Menu("Title", []Option{
+		{
+			Label: "Option 1",
+			Callback: func() {
+				chosen = "You chose option 1."
+			},
+		},
+	})
+	fmt.Println(chosen)
 }

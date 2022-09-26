@@ -65,6 +65,12 @@ func Menu(title string, options []Option) {
 }
 
 func setup() {
+	optionIndex = 0
+	lastOptionIndex = -1
+	lastMenuContent = ""
+	lastContent = ""
+	lastLineCount = 0
+	lastLines = []string{}
 	cursorHide()
 	firstAvailable()
 	optionCount = len(menuOptions)
