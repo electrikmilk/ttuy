@@ -92,6 +92,14 @@ ttuy.Table(headers, rows)
 
 ![Table](https://user-images.githubusercontent.com/4368524/192122215-eaef5af4-e08f-49c3-a401-9c515655dc34.png)
 
+### Viewport
+
+```go
+Viewport(fileContents)
+```
+
+![Viewport](https://user-images.githubusercontent.com/4368524/192436746-c354968e-0094-4ca9-8f3c-2e0dbb4fc11b.gif)
+
 ### Progress Bar
 
 ```go
