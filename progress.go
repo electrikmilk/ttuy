@@ -6,9 +6,6 @@ package ttuy
 
 import (
 	"fmt"
-	"os/exec"
-	"strconv"
-	"strings"
 )
 
 // ProgressBar prints a progress bar
@@ -43,7 +40,7 @@ func bar(status int) (bar string) {
 	// middle
 	fmt.Print("\u2502")
 	for i := 0; i < progressBlocks; i++ {
-		fmt.Print(Style("█", Cyan))
+		fmt.Print(Style("\u2590", Cyan))
 	}
 	for i := 0; i < remain; i++ {
 		fmt.Print(" ")

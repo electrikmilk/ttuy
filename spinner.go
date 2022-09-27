@@ -19,13 +19,13 @@ const Blinker SpinnerStyle = "blinker"
 var ticks = []string{"|", "/", "—", "\\"}
 var dots = []string{"", ".", "..", "..."}
 var throbs = []string{
-	Style("•", Cyan) + Style("•", Dim) + Style("•", Dim),
-	Style("•", Dim) + Style("•", Cyan) + Style("•", Dim),
-	Style("•", Dim) + Style("•", Dim) + Style("•", Cyan),
+	Style(bullet, Cyan) + Style(bullet, Dim) + Style(bullet, Dim),
+	Style(bullet, Dim) + Style(bullet, Cyan) + Style(bullet, Dim),
+	Style(bullet, Dim) + Style(bullet, Dim) + Style(bullet, Cyan),
 }
 var blinks = []string{
-	Style("•", Dim),
-	Style("•", Cyan, Blink),
+	Style(bullet, Dim),
+	Style(bullet, Cyan, Blink),
 }
 
 var stop = make(chan bool)
