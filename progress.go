@@ -24,12 +24,9 @@ func ProgressBar(status int) {
 
 func bar(status int) (bar string) {
 	var progress = float64(status) / float64(100)
-	out, err := exec.Command("tput", "cols").Output()
-	if err != nil {
-		panic(err)
-	}
-	cols, _ := strconv.Atoi(strings.TrimSuffix(string(out), eol()))
-	progressBlocks := int(progress * float64(cols))
+	terminalCols()
+	cols -= 3
+	progressBlocks := int(progress*float64(cols)) - 1
 	remain := cols - progressBlocks
 	if status == 0 {
 		for i := 0; i < 3; i++ {
