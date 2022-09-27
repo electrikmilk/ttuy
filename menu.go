@@ -6,22 +6,9 @@ package ttuy
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/eiannone/keyboard"
 )
-
-var content string
-var lineCount int
-var lines []string
-
-var lastContent string
-var lastLineCount int
-var lastLines []string
-var lastMenuContent string
-var lastOptionIndex = -1
-
-var diff int
 
 var menuTitle string
 var menuOptions []Option
@@ -29,9 +16,11 @@ var menuOptions []Option
 var optionIndex int
 var optionCount int
 
+var lastMenuContent string
+var lastOptionIndex = -1
+
 var selected = "[x]"
 var notSelected = "[ ]"
-var drawing = true
 
 type Option struct {
 	Label    string
@@ -39,44 +28,35 @@ type Option struct {
 	Disabled bool
 }
 
-// Menu displays a menu of options and triggers the callback corresponding to the option chosen
 func Menu(title string, options []Option) {
 	menuTitle = title
 	menuOptions = options
-	drawing = true
-	setup()
-	go readKeys(handleMenuKeys)
-	for {
-		if !drawing {
-			break
-		}
-		if currentLine != 0 {
-			backUp()
-		}
-		content = template()
-		if content != lastContent {
-			splitCount()
-			paintMenu()
-			last()
-		}
-	}
-	fmt.Println(content)
-	cursorShow()
-}
-
-func setup() {
 	optionIndex = 0
 	lastOptionIndex = -1
 	lastMenuContent = ""
-	lastContent = ""
-	lastLineCount = 0
-	lastLines = []string{}
-	cursorHide()
-	firstAvailable()
 	optionCount = len(menuOptions)
-	content = template()
-	splitCount()
-	makeRoom()
+	go readKeys(handleMenuKeys)
+	firstAvailable()
+	painter(func() (menu string) {
+		if lastOptionIndex != optionIndex {
+			menu = Style(menuTitle, Bold, Green) + eol()
+			for i, option := range menuOptions {
+				switch {
+				case option.Disabled:
+					menu += Style(fmt.Sprintf(notSelected+" %s"+eol(), option.Label), Dim)
+				case i == optionIndex:
+					menu += Style(selected, Magenta) + fmt.Sprintf(" %s"+eol(), option.Label)
+				default:
+					menu += fmt.Sprintf(notSelected+" %s"+eol(), option.Label)
+				}
+			}
+			lastMenuContent = menu
+			lastOptionIndex = optionIndex
+		} else {
+			menu = lastMenuContent
+		}
+		return
+	})
 }
 
 func firstAvailable() {
@@ -87,13 +67,6 @@ func firstAvailable() {
 			}
 		}
 	}
-}
-
-func makeRoom() {
-	for i := 0; i < lineCount; i++ {
-		fmt.Print(eol())
-	}
-	linePrev(lineCount)
 }
 
 func handleMenuKeys(key any) {
@@ -129,67 +102,8 @@ func handleMenuKeys(key any) {
 			nextIndex++
 		}
 	case keyboard.KeyEnter:
-		drawing = false
+		stopPainting()
 		selectedOption := menuOptions[optionIndex]
 		selectedOption.Callback()
 	}
-}
-
-func template() (menu string) {
-	if lastOptionIndex != optionIndex {
-		menu = Style(menuTitle, Bold, Green) + eol()
-		for i, option := range menuOptions {
-			switch {
-			case option.Disabled:
-				menu += Style(fmt.Sprintf(notSelected+" %s"+eol(), option.Label), Dim)
-			case i == optionIndex:
-				menu += Style(selected, Magenta) + fmt.Sprintf(" %s"+eol(), option.Label)
-			default:
-				menu += fmt.Sprintf(notSelected+" %s"+eol(), option.Label)
-			}
-		}
-		lastMenuContent = menu
-		lastOptionIndex = optionIndex
-	} else {
-		menu = lastMenuContent
-	}
-	return
-}
-
-func paintMenu() {
-	for i, line := range lines {
-		if len(lastLines) > i {
-			if lastLines[i] != lines[i] {
-				replaceLine(line)
-			}
-		} else {
-			replaceLine(line)
-		}
-		lineNext(1)
-	}
-	if lastLineCount != 0 {
-		if lastLineCount > lineCount {
-			diff = lastLineCount - lineCount
-			for i := 0; i < diff; i++ {
-				clearLine()
-				lineNext(1)
-			}
-		}
-	}
-}
-
-func replaceLine(line string) {
-	clearLine()
-	fmt.Printf("%s\r", line)
-}
-
-func splitCount() {
-	lines = strings.Split(content, eol())
-	lineCount = len(lines)
-}
-
-func last() {
-	lastContent = content
-	lastLineCount = lineCount
-	lastLines = lines
 }
