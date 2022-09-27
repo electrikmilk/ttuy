@@ -91,7 +91,7 @@ func drawBox() {
 	}
 	lineNext(2)
 	clearLine()
-	fmt.Print("^C - Quit\t" + upArrow + " - Up\t" + downArrow + " - Down")
+	fmt.Print("^C Exit - " + upArrow + " Up - " + downArrow + " Down")
 	linePrev(1)
 	if lineIdx < contentsLinesCount {
 		linePrev(1)
