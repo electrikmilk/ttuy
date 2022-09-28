@@ -5,99 +5,80 @@
 package ttuy
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/eiannone/keyboard"
 	"github.com/muesli/reflow/wordwrap"
 )
 
-var contents string
-var contentsLines []string
-var contentsLinesCount int
-
 var lineIdx int
 var lastLineIdx = -1
 
 var stopViewport = make(chan bool)
 
+var topBox string
+var bottomBox string
+
+var contents string
+var contentsLines []string
+var contentsLinesCount int
+
+var lastViewport string
+
 func Viewport(content string) {
-	cursorHide()
-	terminalRows()
-	terminalCols()
 	lineIdx = 0
 	lastLineIdx = -1
 	contents = wordwrap.String(content, cols-2)
 	contentsLines = strings.Split(contents, eol())
 	contentsLinesCount = len(contentsLines)
-	drawOutline()
-	lineFeed()
-	linePrev(2)
+	terminalRows()
+	terminalCols()
+	cursorHide()
+	drawBox()
 	go readKeys(handleViewportKeys)
-	for {
-		select {
-		case <-stopViewport:
-			lineFeed()
-			lineFeed()
-			cursorShow()
-			return
-		default:
-			if lineIdx != lastLineIdx {
-				drawBox()
+	painter(func() (template string) {
+		if lineIdx != lastLineIdx {
+			template += topBox + "\n"
+			var matchingRows = rows + lineIdx - 1
+			for i := lineIdx; i < matchingRows; i++ {
+				if i < contentsLinesCount {
+					template += "\u2502 "
+					template += contentsLines[i]
+					for c := 0; c < (cols - len(contentsLines[i]) - 1); c++ {
+						template += " "
+					}
+					template += "\u2502\n"
+				}
 			}
+			if matchingRows < rows {
+				for i := 0; i < ((rows - 1) - contentsLinesCount); i++ {
+					template += "\u2502"
+					for c := 0; c < cols; c++ {
+						template += " "
+					}
+					template += "\u2502\n"
+				}
+			}
+			template += bottomBox + "\n^C Exit - " + upArrow + " Up - " + downArrow + " Down"
+			lastViewport = template
+		} else {
+			template = lastViewport
 		}
-	}
-}
-
-func drawOutline() {
-	fmt.Print("\u250C")
-	for i := 0; i < cols; i++ {
-		fmt.Print("\u2500")
-	}
-	fmt.Print("\u2510")
-	for i := 0; i < rows; i++ {
-		fmt.Print(eol())
-	}
-	fmt.Print("\u2514")
-	for i := 0; i < cols; i++ {
-		fmt.Print("\u2500")
-	}
-	fmt.Print("\u2518")
+		return
+	})
 }
 
 func drawBox() {
-	linePrev(rows - 2)
-	var matchingRows = rows + lineIdx - 1
-	for i := lineIdx; i < matchingRows; i++ {
-		if i < contentsLinesCount {
-			clearLine()
-			fmt.Print("\u2502 ")
-			fmt.Print(contentsLines[i])
-			for c := 0; c < (cols - len(contentsLines[i]) - 1); c++ {
-				fmt.Print(" ")
-			}
-			fmt.Print("\u2502 ")
-			lineNext(1)
-		}
+	topBox = "\u250C"
+	for i := 0; i < cols; i++ {
+		topBox += "\u2500"
 	}
-	if matchingRows < rows {
-		for i := 0; i < ((rows - 1) - contentsLinesCount); i++ {
-			fmt.Print("\u2502")
-			for c := 0; c < cols; c++ {
-				fmt.Print(" ")
-			}
-			fmt.Print("\u2502")
-			lineNext(1)
-		}
+	topBox += "\u2510"
+	bottomBox = "\u2514"
+	for i := 0; i < cols; i++ {
+		bottomBox += "\u2500"
 	}
-	lineNext(2)
-	clearLine()
-	fmt.Print("^C Exit - " + upArrow + " Up - " + downArrow + " Down")
-	linePrev(1)
-	if lineIdx < contentsLinesCount {
-		linePrev(1)
-	}
-	lastLineIdx = lineIdx
+	bottomBox += "\u2518"
 }
 
 func handleViewportKeys(key any) {
@@ -107,6 +88,7 @@ func handleViewportKeys(key any) {
 	default:
 		switch key {
 		case keyboard.KeyCtrlC:
+			stopPainting()
 			stopViewport <- true
 		case keyboard.KeyArrowUp:
 			if (lineIdx - 1) >= 0 {
