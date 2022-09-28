@@ -143,3 +143,5 @@ Print contents of file, some ASCII art for example...
 ```go
 ttuy.File("logo.txt")
 ```
+
+![File](https://user-images.githubusercontent.com/4368524/192108479-306d0f11-b3f9-406b-86e6-e7ce4fde66f2.png)
