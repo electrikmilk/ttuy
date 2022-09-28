@@ -1,6 +1,6 @@
 module github.com/electrikmilk/ttuy
 
-go 1.18
+go 1.19
 
 require (
 	github.com/eiannone/keyboard v0.0.0-20220611211555-0d226195f203
