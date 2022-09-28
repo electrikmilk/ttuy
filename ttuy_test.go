@@ -14,7 +14,7 @@ import (
 func TestProgressBar(t *testing.T) {
 	for i := 0; i <= 100; i++ {
 		ProgressBar(i)
-		time.Sleep(50 * time.Millisecond)
+		time.Sleep(100 * time.Millisecond)
 	}
 }
 

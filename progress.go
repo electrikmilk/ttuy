@@ -23,7 +23,7 @@ func bar(status int) (bar string) {
 	var progress = float64(status) / float64(100)
 	terminalCols()
 	cols -= 3
-	progressBlocks := int(progress*float64(cols)) - 1
+	progressBlocks := int(progress * float64(cols))
 	remain := cols - progressBlocks
 	if status == 0 {
 		lineFeed()
@@ -36,6 +36,7 @@ func bar(status int) (bar string) {
 	}
 	lineNext(1)
 	// middle
+	clearLine()
 	fmt.Print("\u2502")
 	for i := 0; i < progressBlocks; i++ {
 		fmt.Print(Style("\u2590", Cyan))
