@@ -103,9 +103,9 @@ func handleMenuKeys(key any) {
 			nextIndex++
 		}
 	case keyboard.KeyEnter:
-		stopPainting()
 		selectedOption := menuOptions[optionIndex]
 		selectedOption.Callback()
+		stopPainting()
 		return
 	}
 }
