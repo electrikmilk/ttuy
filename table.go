@@ -10,12 +10,12 @@ import (
 
 var dimensions map[int]int
 
-type row struct {
+type Row struct {
 	columns []string
 }
 
 // Table prints rows with headers in a text table
-func Table(headers []string, rows []row) {
+func Table(headers []string, rows []Row) {
 	checkEven(&headers, &rows)
 	calcDimensions(&headers, &rows)
 	var line = makeLine(&headers)
@@ -63,7 +63,7 @@ func makeLine(headers *[]string) (line string) {
 	return
 }
 
-func checkEven(headers *[]string, rows *[]row) {
+func checkEven(headers *[]string, rows *[]Row) {
 	var headersCount = len(*headers)
 	for _, row := range *rows {
 		var rowCount = len(row.columns)
@@ -74,7 +74,7 @@ func checkEven(headers *[]string, rows *[]row) {
 	}
 }
 
-func calcDimensions(headers *[]string, rows *[]row) {
+func calcDimensions(headers *[]string, rows *[]Row) {
 	dimensions = make(map[int]int)
 	for _, row := range *rows {
 		for c, column := range row.columns {
