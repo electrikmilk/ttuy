@@ -109,7 +109,7 @@ for i := 0; i <= 100; i++ {
 }
 ```
 
-![ProgressBar](https://user-images.githubusercontent.com/4368524/192120185-cb9edca5-2fb3-4317-86c6-a8cc4e479770.gif)
+![ProgressBar](https://user-images.githubusercontent.com/4368524/192673338-dbe6de5e-7225-4456-9a86-27bdd2702a33.gif)
 
 ### Spinners
 
