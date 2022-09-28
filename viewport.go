@@ -17,15 +17,14 @@ var contentsLines []string
 var contentsLinesCount int
 
 var lineIdx int
-var reading = true
-
 var lastLineIdx = -1
+
+var stopViewport = make(chan bool)
 
 func Viewport(content string) {
 	cursorHide()
 	terminalRows()
 	terminalCols()
-	reading = true
 	lineIdx = 0
 	lastLineIdx = -1
 	contents = wordwrap.String(content, cols-2)
@@ -36,16 +35,18 @@ func Viewport(content string) {
 	linePrev(2)
 	go readKeys(handleViewportKeys)
 	for {
-		if !reading {
-			break
-		}
-		if lineIdx != lastLineIdx {
-			drawBox()
+		select {
+		case <-stopViewport:
+			lineFeed()
+			lineFeed()
+			cursorShow()
+			return
+		default:
+			if lineIdx != lastLineIdx {
+				drawBox()
+			}
 		}
 	}
-	lineFeed()
-	lineFeed()
-	cursorShow()
 }
 
 func drawOutline() {
@@ -100,16 +101,21 @@ func drawBox() {
 }
 
 func handleViewportKeys(key any) {
-	switch key {
-	case keyboard.KeyCtrlC:
-		reading = false
-	case keyboard.KeyArrowUp:
-		if (lineIdx - 1) >= 0 {
-			lineIdx--
-		}
-	case keyboard.KeyArrowDown:
-		if (rows + lineIdx - 1) < contentsLinesCount {
-			lineIdx++
+	select {
+	case <-stopViewport:
+		return
+	default:
+		switch key {
+		case keyboard.KeyCtrlC:
+			stopViewport <- true
+		case keyboard.KeyArrowUp:
+			if (lineIdx - 1) >= 0 {
+				lineIdx--
+			}
+		case keyboard.KeyArrowDown:
+			if (rows + lineIdx - 1) < contentsLinesCount {
+				lineIdx++
+			}
 		}
 	}
 }

@@ -13,8 +13,8 @@ func ProgressBar(status int) {
 	cursorHide()
 	bar(status)
 	if status == 100 {
-		lineNext(2)
-		fmt.Print(eol())
+		lineFeed()
+		lineFeed()
 		cursorShow()
 	}
 }
@@ -26,10 +26,8 @@ func bar(status int) (bar string) {
 	progressBlocks := int(progress*float64(cols)) - 1
 	remain := cols - progressBlocks
 	if status == 0 {
-		for i := 0; i < 3; i++ {
-			lineFeed()
-		}
-		linePrev(3)
+		lineFeed()
+		linePrev(1)
 		fmt.Print("\u250C")
 		for i := 0; i < (progressBlocks + remain); i++ {
 			fmt.Print("\u2500")

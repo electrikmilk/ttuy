@@ -24,8 +24,14 @@ type template func() string
 var stopPaint = make(chan bool)
 
 func painter(callback template) {
+	lastContent = ""
+	lastLineCount = 0
+	currentLine = 0
+	lastLines = []string{}
 	content = callback()
-	setup()
+	cursorHide()
+	splitCount()
+	makeRoom()
 	for {
 		select {
 		case <-stopPaint:
@@ -44,15 +50,6 @@ func painter(callback template) {
 			}
 		}
 	}
-}
-
-func setup() {
-	lastContent = ""
-	lastLineCount = 0
-	lastLines = []string{}
-	cursorHide()
-	splitCount()
-	makeRoom()
 }
 
 func makeRoom() {
