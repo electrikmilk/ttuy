@@ -8,18 +8,9 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"runtime"
 	"strings"
 	"time"
 )
-
-func eol() (eol string) {
-	eol = "\n"
-	if runtime.GOOS == "windows" {
-		eol = "\r\n"
-	}
-	return
-}
 
 // File print the content of the file at path
 func File(path string) {
