@@ -105,5 +105,6 @@ func handleMenuKeys(key any) {
 		stopPainting()
 		selectedOption := menuOptions[optionIndex]
 		selectedOption.Callback()
+		return
 	}
 }
