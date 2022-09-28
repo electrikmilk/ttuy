@@ -28,6 +28,7 @@ type Option struct {
 	Disabled bool
 }
 
+// Menu displays a menu of options and triggers the callback corresponding to the option chosen
 func Menu(title string, options []Option) {
 	menuTitle = title
 	menuOptions = options
