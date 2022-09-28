@@ -95,7 +95,7 @@ ttuy.Table(headers, rows)
 ### Viewport
 
 ```go
-Viewport(fileContents)
+ttuy.Viewport(fileContents)
 ```
 
 ![Viewport](https://user-images.githubusercontent.com/4368524/192436746-c354968e-0094-4ca9-8f3c-2e0dbb4fc11b.gif)
