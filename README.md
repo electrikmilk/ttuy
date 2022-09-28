@@ -82,10 +82,10 @@ ttuy.Menu("Title", []ttuy.Option{
 
 ```go
 var headers = []string{"Header 1", "Header 2", "Header 3", "Header 4"}
-var rows []ttuy.row
+var rows []ttuy.Row
 for i := 0; i < 5; i++ {
 	var rowRows = []string{"Cell 1", "Cell 2", "Cell 3", "Cell 4"}
-	rows = append(rows, ttuy.row{columns: rowRows})
+	rows = append(rows, ttuy.Row{columns: rowRows})
 }
 ttuy.Table(headers, rows)
 ```
