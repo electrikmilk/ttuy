@@ -33,7 +33,6 @@ func Viewport(content string) {
 	contentsLinesCount = len(contentsLines)
 	terminalRows()
 	terminalCols()
-	cursorHide()
 	drawBox()
 	go readKeys(handleViewportKeys)
 	painter(func() (template string) {
