@@ -12,47 +12,38 @@ import (
 
 var optionSelected int
 var lastOptionSelected = -1
-var promptMenu = true
+
+var lastPrompt string
 
 // Prompt prints a prompt for the user to choose yes or no using the arrow keys then returns a boolean based on the option chosen
 func Prompt(prompt string) (proceed bool) {
-	cursorHide()
-	fmt.Print(eol() + Style(prompt, Bold, Green) + eol())
+	fmt.Print(eol())
 	go readKeys(handlePromptKeys)
-	fmt.Print(eol())
-	for i := 0; i < 2; i++ {
-		fmt.Print(eol())
-	}
-	linePrev(2)
-	for {
-		if !promptMenu {
-			break
-		}
+	painter(func() (template string) {
 		if optionSelected != lastOptionSelected {
-			cursorStart()
-			clearLine()
+			template = Style(prompt, Bold, Green) + eol()
 			if optionSelected == 1 {
-				fmt.Print(Style(" Yes ", Inverted, Bold))
+				template += Style(" Yes ", Inverted, Bold)
+				proceed = true
 			} else {
-				fmt.Print(Style(" Yes ", Bold))
+				template += Style(" Yes ", Bold)
 			}
-			fmt.Print("\t")
+			template += "\t"
 			if optionSelected == 0 {
-				fmt.Print(Style(" No ", Inverted, Bold))
+				template += Style(" No ", Inverted, Bold)
+				proceed = false
 			} else {
-				fmt.Print(Style(" No ", Bold))
+				template += Style(" No ", Bold)
 			}
+			template += eols(2) + Style(leftArrow+" "+rightArrow+" Use Left & Right Arrow Keys to Choose.", Dim)
 			lastOptionSelected = optionSelected
+			lastPrompt = template
+		} else {
+			template = lastPrompt
 		}
-	}
-	lineNext(1)
+		return
+	})
 	fmt.Print(eol())
-	cursorShow()
-	if optionSelected == 1 {
-		proceed = true
-	} else if optionSelected == 0 {
-		proceed = false
-	}
 	return
 }
 
@@ -67,6 +58,7 @@ func handlePromptKeys(key any) {
 			optionSelected = 0
 		}
 	case keyboard.KeyEnter:
-		promptMenu = false
+		stopPainting()
+		return
 	}
 }
