@@ -14,11 +14,14 @@ type Row struct {
 	columns []string
 }
 
+var combined []Row
+
 // Table prints rows with headers in a text table
 func Table(headers []string, rows []Row) {
-	checkEven(&headers, &rows)
-	calcDimensions(&headers, &rows)
-	var line = makeLine(&headers)
+	combineHeadersRows(&headers, &rows)
+	checkEven()
+	calcDimensions()
+	var line = makeLine()
 	fmt.Println(line)
 	fmt.Print(Style("|", Dim))
 	for h, header := range headers {
@@ -50,10 +53,16 @@ func Table(headers []string, rows []Row) {
 	fmt.Println(line)
 }
 
-func makeLine(headers *[]string) (line string) {
+func combineHeadersRows(headers *[]string, rows *[]Row) {
+	var headersRow = Row{columns: *headers}
+	combined = append(combined, headersRow)
+	combined = append(combined, *rows...)
+}
+
+func makeLine() (line string) {
 	line = "+"
-	for h := range *headers {
-		var columnLength = dimensions[h] + 2
+	for c := range combined[0].columns {
+		var columnLength = dimensions[c] + 2
 		for idx := 0; idx < columnLength; idx++ {
 			line += "-"
 		}
@@ -63,20 +72,19 @@ func makeLine(headers *[]string) (line string) {
 	return
 }
 
-func checkEven(headers *[]string, rows *[]Row) {
-	var headersCount = len(*headers)
-	for _, row := range *rows {
-		var rowCount = len(row.columns)
-		if rowCount < headersCount || rowCount > headersCount {
-			fmt.Println(headers, rows)
-			panic("Uneven table! Number of columns in rows and header columns do not match!")
+func checkEven() {
+	for _, row := range combined {
+		for _, otherRow := range combined {
+			if len(row.columns) != len(otherRow.columns) {
+				panic("Uneven table! Number of columns inconsistent!")
+			}
 		}
 	}
 }
 
-func calcDimensions(headers *[]string, rows *[]Row) {
+func calcDimensions() {
 	dimensions = make(map[int]int)
-	for _, row := range *rows {
+	for _, row := range combined {
 		for c, column := range row.columns {
 			if length, ok := dimensions[c]; ok {
 				if len(column) > length {
@@ -85,15 +93,6 @@ func calcDimensions(headers *[]string, rows *[]Row) {
 			} else {
 				dimensions[c] = len(column)
 			}
-		}
-	}
-	for h, header := range *headers {
-		if length, ok := dimensions[h]; ok {
-			if len(header) > length {
-				dimensions[h] = len(header)
-			}
-		} else {
-			dimensions[h] = len(header)
 		}
 	}
 }
