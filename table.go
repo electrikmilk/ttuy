@@ -8,19 +8,13 @@ import (
 	"fmt"
 )
 
-var dimensions map[int]int
-
-type Row struct {
-	columns []string
-}
-
 var combined []Row
 
 // Table prints rows with headers in a text table
 func Table(headers []string, rows []Row) {
 	combineHeadersRows(&headers, &rows)
-	checkEven()
-	calcDimensions()
+	checkEven(&combined)
+	calcDimensions(&combined)
 	var line = makeLine()
 	fmt.Println(line)
 	fmt.Print(Style("|", Dim))
@@ -72,8 +66,8 @@ func makeLine() (line string) {
 	return
 }
 
-func checkEven() {
-	for _, row := range combined {
+func checkEven(rows *[]Row) {
+	for _, row := range *rows {
 		for _, otherRow := range combined {
 			if len(row.columns) != len(otherRow.columns) {
 				panic("Uneven table! Number of columns inconsistent!")
@@ -82,9 +76,9 @@ func checkEven() {
 	}
 }
 
-func calcDimensions() {
+func calcDimensions(rows *[]Row) {
 	dimensions = make(map[int]int)
-	for _, row := range combined {
+	for _, row := range *rows {
 		for c, column := range row.columns {
 			if length, ok := dimensions[c]; ok {
 				if len(column) > length {

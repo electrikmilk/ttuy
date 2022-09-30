@@ -33,51 +33,34 @@ func Viewport(content string) {
 	contentsLinesCount = len(contentsLines)
 	terminalRows()
 	terminalCols()
-	drawBox()
 	go readKeys(handleViewportKeys)
 	painter(func() (template string) {
 		if lineIdx != lastLineIdx {
-			template += topBox + "\n"
 			var matchingRows = rows + lineIdx - 1
 			for i := lineIdx; i < matchingRows; i++ {
 				if i < contentsLinesCount {
-					template += "\u2502 "
 					template += contentsLines[i]
 					for c := 0; c < (cols - len(contentsLines[i]) - 1); c++ {
 						template += " "
 					}
-					template += "\u2502\n"
+					template += eol()
 				}
 			}
 			if matchingRows < rows {
 				for i := 0; i < ((rows - 1) - contentsLinesCount); i++ {
-					template += "\u2502"
 					for c := 0; c < cols; c++ {
 						template += " "
 					}
-					template += "\u2502\n"
+					template += eol()
 				}
 			}
-			template += bottomBox + "\n^C Exit - " + upArrow + " Up - " + downArrow + " Down"
+			template += eol() + Style("^C Exit \t "+upArrow+" "+downArrow+" Scroll", Dim)
 			lastViewport = template
 		} else {
 			template = lastViewport
 		}
 		return
 	})
-}
-
-func drawBox() {
-	topBox = "\u250C"
-	for i := 0; i < cols; i++ {
-		topBox += "\u2500"
-	}
-	topBox += "\u2510"
-	bottomBox = "\u2514"
-	for i := 0; i < cols; i++ {
-		bottomBox += "\u2500"
-	}
-	bottomBox += "\u2518"
 }
 
 func handleViewportKeys(key any) {

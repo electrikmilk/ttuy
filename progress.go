@@ -22,7 +22,7 @@ func ProgressBar(status int) {
 func bar(status int) (bar string) {
 	var progress = float64(status) / float64(100)
 	terminalCols()
-	cols -= 3
+	cols -= 8
 	progressBlocks := int(progress * float64(cols))
 	remain := cols - progressBlocks
 	if status == 0 {
