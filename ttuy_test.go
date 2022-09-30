@@ -10,6 +10,8 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/eiannone/keyboard"
 )
 
 func TestProgressBar(t *testing.T) {
@@ -243,4 +245,22 @@ func TestMenu(*testing.T) {
 		},
 	})
 	fmt.Println(chosen)
+}
+
+func TestPainter(*testing.T) {
+	var lastText string
+	go readKeys(func(key any) {
+		if key == keyboard.KeyCtrlC {
+			stopPainting()
+		}
+	})
+	painter(func() (template string) {
+		var text = "Test"
+		if text != lastText {
+			template = text
+		} else {
+			template = lastText
+		}
+		return
+	})
 }

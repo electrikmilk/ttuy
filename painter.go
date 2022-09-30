@@ -7,6 +7,7 @@ package ttuy
 import (
 	"fmt"
 	"strings"
+	"time"
 )
 
 var content string
@@ -49,6 +50,7 @@ func painter(callback template) {
 				last()
 			}
 		}
+		time.Sleep(50 * time.Millisecond)
 	}
 }
 
