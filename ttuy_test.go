@@ -7,6 +7,7 @@ package ttuy
 import (
 	"fmt"
 	"os"
+	"strings"
 	"testing"
 	"time"
 )
@@ -96,6 +97,23 @@ func TestTable(t *testing.T) {
 		rows = append(rows, Row{columns: rowRows})
 	}
 	Table(headers, rows)
+}
+
+func TestGrid(t *testing.T) {
+	var alphabet = strings.Split("abcdefghijklmnopqrstuvwxyz", "")
+	var rows []Row
+	for i := 0; i < 10; i++ {
+		var rowRows []string
+		for c := 1; c < 5; c++ {
+			var cellContent string
+			for w := 0; w < 26; w++ {
+				cellContent += alphabet[w]
+			}
+			rowRows = append(rowRows, cellContent)
+		}
+		rows = append(rows, Row{columns: rowRows})
+	}
+	Grid(rows)
 }
 
 func TestStyle(t *testing.T) {
