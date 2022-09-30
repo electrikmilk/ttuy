@@ -21,6 +21,9 @@ K = ERASE IN LINE
 J = ERASE IN DISPLAY
 S = SCROLL UP
 T = SCROLL DOWN
+?25l = HIDE
+?25h = SHOW
+ES = LF
 */
 
 var currentLine int
