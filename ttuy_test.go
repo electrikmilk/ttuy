@@ -6,6 +6,7 @@ package ttuy
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 	"testing"
@@ -255,7 +256,15 @@ func TestPainter(*testing.T) {
 		}
 	})
 	painter(func() (template string) {
-		var text = "Painter Test - Press ^C to exit"
+		var text string
+		switch rand.Intn(4) {
+		case 1:
+			text = "Painter Test - Press ^C to exit"
+		case 2:
+			text = "Painter Test\nPainter Test\nPress ^C to exit"
+		case 3:
+			text = "Painter Test\nPress ^C to exit"
+		}
 		if text != lastText {
 			template = text
 		} else {

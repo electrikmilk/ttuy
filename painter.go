@@ -32,7 +32,6 @@ func painter(callback template) {
 	content = callback()
 	cursorHide()
 	splitCount()
-	makeRoom()
 	for {
 		select {
 		case <-stopPaint:
@@ -62,6 +61,9 @@ func makeRoom() {
 }
 
 func paint() {
+	if lastLineCount < lineCount {
+		makeRoom()
+	}
 	for i, line := range lines {
 		if len(lastLines) > i {
 			if lastLines[i] != lines[i] {
