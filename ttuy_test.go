@@ -267,6 +267,7 @@ func TestPainter(*testing.T) {
 		}
 		if text != lastText {
 			template = text
+			lastText = template
 		} else {
 			template = lastText
 		}
