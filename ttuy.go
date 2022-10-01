@@ -5,8 +5,6 @@
 package ttuy
 
 import (
-	"runtime"
-
 	"github.com/olekukonko/ts"
 )
 
@@ -23,14 +21,6 @@ var dimensions map[int]int
 
 type Row struct {
 	columns []string
-}
-
-func eol() (eol string) {
-	eol = "\n"
-	if runtime.GOOS == "windows" {
-		eol = "\r\n"
-	}
-	return
 }
 
 func eols(times int) (eols string) {
