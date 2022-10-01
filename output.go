@@ -11,9 +11,9 @@ import (
 
 // Fail prints message styled as an error then exits
 func Fail(message string) {
-	var label = Style(" \u2613 Error ", LightRedBg, Black, Bold)
+	var label = Style(" \u2613 Error ", BrightRedBg, Black, Bold)
 	message = fmt.Sprintf(" %s", message)
-	message = Style(message, LightRed, Bold)
+	message = Style(message, BrightRed, Bold)
 	fmt.Println(label + message)
 	os.Exit(1)
 }
