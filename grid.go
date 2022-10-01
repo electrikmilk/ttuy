@@ -9,6 +9,7 @@ import (
 	"strings"
 )
 
+// Grid evenly cells in rows in a grid
 func Grid(rows []Row) {
 	terminalCols()
 	calcDimensions(&rows)
