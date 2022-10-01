@@ -255,7 +255,7 @@ func TestPainter(*testing.T) {
 		}
 	})
 	painter(func() (template string) {
-		var text = "Test"
+		var text = "Painter Test - Press ^C to exit"
 		if text != lastText {
 			template = text
 		} else {
