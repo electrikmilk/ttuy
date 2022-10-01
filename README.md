@@ -6,7 +6,9 @@
     <a href="https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
 </p>
 
-**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use procedural TUI Framework. Procedural as in, no models, no dealing with abstractions, just run a function, and it just works. It uses ANSI escape sequences for colors and manipulating the cursor.
+**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI Framework.
+
+Procedural as in, no models, no complex with abstractions, just run a function, and it just works.
 
 ```console
 go get github.com/electrikmilk/ttuy
@@ -42,7 +44,11 @@ if ttuy.Prompt("Install Program? This will take up 586kb.") {
 ### Yes/No Prompt
 
 ```go
-ttuy.YesNo("Are you sure?")
+if ttuy.YesNo("Are you sure?") {
+	fmt.Println("Installing...")
+} else {
+	fmt.Println("Installation Canceled.")
+}
 ```
 
 ![YesNo](https://user-images.githubusercontent.com/4368524/192075315-f9b87357-94da-4fb5-9184-e292ae941b9d.png)
@@ -91,6 +97,27 @@ ttuy.Table(headers, rows)
 ```
 
 ![Table](https://user-images.githubusercontent.com/4368524/192122215-eaef5af4-e08f-49c3-a401-9c515655dc34.png)
+
+### Grid
+
+```go
+var alphabet = strings.Split("abcdefghijklmnopqrstuvwxyz", "")
+var rows []ttuy.Row
+for i := 0; i < 10; i++ {
+	var rowRows []string
+	for c := 1; c < 5; c++ {
+		var cellContent string
+		for w := 0; w < 26; w++ {
+			cellContent += alphabet[w]
+		}
+		rowRows = append(rowRows, cellContent)
+	}
+	rows = append(rows, ttuy.Row{columns: rowRows})
+}
+ttuy.Grid(rows)
+```
+
+![Grid](https://user-images.githubusercontent.com/4368524/193421608-71051c8d-8f77-4cd8-b1c6-ff685d41b46b.png)
 
 ### Viewport
 
