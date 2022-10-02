@@ -19,13 +19,13 @@ const Blinker SpinnerStyle = "blinker"
 var ticks = []string{"|", "/", "—", "\\"}
 var dots = []string{"", ".", "..", "..."}
 var throbs = []string{
-	Style(bullet, Cyan) + Style(bullet, Dim) + Style(bullet, Dim),
-	Style(bullet, Dim) + Style(bullet, Cyan) + Style(bullet, Dim),
-	Style(bullet, Dim) + Style(bullet, Dim) + Style(bullet, Cyan),
+	Style(bullet, CyanText) + Style(bullet, Dim) + Style(bullet, Dim),
+	Style(bullet, Dim) + Style(bullet, CyanText) + Style(bullet, Dim),
+	Style(bullet, Dim) + Style(bullet, Dim) + Style(bullet, CyanText),
 }
 var blinks = []string{
 	Style(bullet, Dim),
-	Style(bullet, Cyan, Blink),
+	Style(bullet, CyanText, Blink),
 }
 
 var stop = make(chan bool)
@@ -45,7 +45,7 @@ func Spinner(status string, style SpinnerStyle) {
 			case Ticker:
 				for i := 0; i < len(ticks); i++ {
 					clearLine()
-					fmt.Print(Style(ticks[i], Cyan))
+					fmt.Print(Style(ticks[i], CyanText))
 					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
 					time.Sleep(100 * time.Millisecond)

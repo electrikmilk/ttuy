@@ -21,7 +21,7 @@ func Prompt(prompt string) (proceed bool) {
 	go readKeys(handlePromptKeys)
 	painter(func() (template string) {
 		if optionSelected != lastOptionSelected {
-			template = Style(prompt, Bold, Green) + eol()
+			template = Style(prompt, Bold, GreenText) + eol()
 			if optionSelected == 1 {
 				template += Style(" Yes ", Inverted, Bold)
 				proceed = true

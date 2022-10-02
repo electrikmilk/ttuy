@@ -37,7 +37,7 @@ func Ask(prompt string, store *string) {
 
 // AskSecret prints your prompt and feeds input from os.Stdin into store but hides the input
 func AskSecret(prompt string, store *string) {
-	prompt = Style(fmt.Sprintf("\U0001F512 %s: ", prompt), Bold, RedBg, Black)
+	prompt = Style(fmt.Sprintf("\U0001F512 %s: ", prompt), Bold, RedBg, BlackText)
 	fmt.Printf("%s "+CSI+"8m", prompt)
 	scanner := bufio.NewScanner(os.Stdin)
 	if scanner.Scan() {

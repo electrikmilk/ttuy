@@ -30,22 +30,32 @@ const yellow SGR = "3"
 const blue SGR = "4"
 const magenta SGR = "5"
 const cyan SGR = "6"
-
 const gray SGR = "8"
+
 const brightRed SGR = "9"
 const brightGreen SGR = "10"
 const brightYellow SGR = "11"
 const brightBlue SGR = "12"
 const brightMagenta SGR = "13"
 const brightCyan SGR = "14"
+const white SGR = "15"
 
-var Black = FG + black
-var Red = FG + red
-var Green = FG + green
-var Yellow = FG + yellow
-var Blue = FG + blue
-var Magenta = FG + magenta
-var Cyan = FG + cyan
+var BlackText = FG + black
+var RedText = FG + red
+var GreenText = FG + green
+var YellowText = FG + yellow
+var BlueText = FG + blue
+var MagentaText = FG + magenta
+var CyanText = FG + cyan
+var WhiteText = FG + white
+
+var GrayText = FG + gray
+var BrightRedText = FG + brightRed
+var BrightGreenText = FG + brightGreen
+var BrightYellowText = FG + brightYellow
+var BrightBlueText = FG + brightBlue
+var BrightMagentaText = FG + brightMagenta
+var BrightCyanText = FG + brightCyan
 
 var BlackBg = BG + black
 var RedBg = BG + red
@@ -54,14 +64,7 @@ var YellowBg = BG + yellow
 var BlueBg = BG + blue
 var MagentaBg = BG + magenta
 var CyanBg = BG + cyan
-
-var Gray = FG + gray
-var BrightRed = FG + brightRed
-var BrightGreen = FG + brightGreen
-var BrightYellow = FG + brightYellow
-var BrightBlue = FG + brightBlue
-var BrightMagenta = FG + brightMagenta
-var BrightCyan = FG + brightCyan
+var WhiteBg = BG + white
 
 var GrayBg = BG + gray
 var BrightRedBg = BG + brightRed

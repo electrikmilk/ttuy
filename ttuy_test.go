@@ -114,12 +114,15 @@ func TestGrid(t *testing.T) {
 			}
 			rowRows = append(rowRows, cellContent)
 		}
-		rows = append(rows, Row{columns: rowRows})
+		rows = append(rows, Row{Columns: rowRows})
 	}
 	Grid(rows)
 }
 
 func TestStyle(t *testing.T) {
+	fmt.Println(Foreground("Text", 176))
+	fmt.Println(Background("Text", 127))
+
 	fmt.Println(Style("Text", Bold))
 	fmt.Println(Style("Text", Italic))
 	fmt.Println(Style("Text", Underlined))
@@ -129,19 +132,19 @@ func TestStyle(t *testing.T) {
 	fmt.Println(Style("Text", Hidden))
 	fmt.Println(Style("Text", Crossed))
 
-	fmt.Println(Style("Text", Bold, Red))
-	fmt.Println(Style("Text", Bold, Yellow))
-	fmt.Println(Style("Text", Bold, Green))
-	fmt.Println(Style("Text", Bold, Cyan))
-	fmt.Println(Style("Text", Bold, Blue))
-	fmt.Println(Style("Text", Bold, Magenta))
+	fmt.Println(Style("Text", Bold, RedText))
+	fmt.Println(Style("Text", Bold, YellowText))
+	fmt.Println(Style("Text", Bold, GreenText))
+	fmt.Println(Style("Text", Bold, CyanText))
+	fmt.Println(Style("Text", Bold, BlueText))
+	fmt.Println(Style("Text", Bold, MagentaText))
 
-	fmt.Println(Style("Text", Black, Bold, RedBg))
-	fmt.Println(Style("Text", Black, Bold, YellowBg))
-	fmt.Println(Style("Text", Black, Bold, GreenBg))
-	fmt.Println(Style("Text", Black, Bold, CyanBg))
-	fmt.Println(Style("Text", Black, Bold, BlueBg))
-	fmt.Println(Style("Text", Black, Bold, MagentaBg))
+	fmt.Println(Style("Text", BlackText, Bold, RedBg))
+	fmt.Println(Style("Text", BlackText, Bold, YellowBg))
+	fmt.Println(Style("Text", BlackText, Bold, GreenBg))
+	fmt.Println(Style("Text", BlackText, Bold, CyanBg))
+	fmt.Println(Style("Text", BlackText, Bold, BlueBg))
+	fmt.Println(Style("Text", BlackText, Bold, MagentaBg))
 }
 
 func TestSpinner(t *testing.T) {

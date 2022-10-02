@@ -39,12 +39,12 @@ func bar(status int) (bar string) {
 	clearLine()
 	fmt.Print("\u2502")
 	for i := 0; i < progressBlocks; i++ {
-		fmt.Print(Style("\u2590", Cyan))
+		fmt.Print(Style("\u2590", CyanText))
 	}
 	for i := 0; i < remain; i++ {
 		fmt.Print(" ")
 	}
-	fmt.Print("\u2502 " + Style(fmt.Sprintf("%d%%", status), Bold, Green))
+	fmt.Print("\u2502 " + Style(fmt.Sprintf("%d%%", status), Bold, GreenText))
 	// bottom
 	if status == 0 {
 		fmt.Print(eol())

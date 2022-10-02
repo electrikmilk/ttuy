@@ -11,9 +11,9 @@ import (
 
 // Fail prints message styled as an error then exits
 func Fail(message string) {
-	var label = Style(" \u2613 Error ", BrightRedBg, Black, Bold)
+	var label = Style(" \u2613 Error ", BrightRedBg, BlackText, Bold)
 	message = fmt.Sprintf(" %s", message)
-	message = Style(message, BrightRed, Bold)
+	message = Style(message, BrightRedBg, Bold)
 	fmt.Println(label + message)
 	os.Exit(1)
 }
@@ -27,7 +27,7 @@ func Failf(message string, v ...any) {
 // FailErr handles err and prints label with err as a string styled then exits
 func FailErr(label string, err error) {
 	if err != nil {
-		label = Style(fmt.Sprintf(" %s ", label), RedBg, Black, Bold)
+		label = Style(fmt.Sprintf(" %s ", label), RedBg, BlackText, Bold)
 		fmt.Println(label + fmt.Sprintf(" %s", err))
 		os.Exit(1)
 	}
@@ -35,9 +35,9 @@ func FailErr(label string, err error) {
 
 // Warn prints message styled as a warning
 func Warn(message string) {
-	var label = Style(" \u2691 Warning ", YellowBg, Black, Bold)
+	var label = Style(" \u2691 Warning ", YellowBg, BlackText, Bold)
 	message = fmt.Sprintf(" %s", message)
-	message = Style(message, Yellow, Bold)
+	message = Style(message, YellowText, Bold)
 	fmt.Println(label + message)
 }
 
@@ -49,7 +49,7 @@ func Warnf(message string, v ...any) {
 
 // Info prints message highlighted
 func Info(message string) {
-	message = Style(message, Blue, Bold)
+	message = Style(message, BlueText, Bold)
 	fmt.Println(message)
 }
 
@@ -61,9 +61,9 @@ func Infof(message string, v ...any) {
 
 // Success prints message styled as a success
 func Success(message string) {
-	var label = Style(" \u2714 ", GreenBg, Black, Bold)
+	var label = Style(" \u2714 ", GreenBg, BlackText, Bold)
 	message = fmt.Sprintf(" %s", message)
-	message = Style(message, Green, Bold)
+	message = Style(message, GreenText, Bold)
 	fmt.Println(label + message)
 }
 
