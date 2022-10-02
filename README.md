@@ -6,9 +6,9 @@
     <a href="https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
 </p>
 
-**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI Framework.
+**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI framework.
 
-Procedural as in, no models, no complex with abstractions, just run a function, and it just works.
+Procedural as in, no models, no complex abstractions, run a function, and it just works.
 
 ```console
 go get github.com/electrikmilk/ttuy
@@ -56,10 +56,10 @@ if ttuy.YesNo("Are you sure?") {
 ### Styled Output
 
 ```go
-ttuy.Style("Text", ttuy.Bold, ttuy.Green) // returns string
+ttuy.Style("Text", ttuy.Bold, ttuy.Green)
 ```
 
-<img width="240" alt="Screen Shot 2022-09-23 at 14 06 15" src="https://user-images.githubusercontent.com/4368524/192031417-28a22355-fc20-49eb-913a-dcb90155ff07.png">
+![Style](https://user-images.githubusercontent.com/4368524/192031417-28a22355-fc20-49eb-913a-dcb90155ff07.png)
 
 ### Menu
 
@@ -91,7 +91,7 @@ var headers = []string{"Header 1", "Header 2", "Header 3", "Header 4"}
 var rows []ttuy.Row
 for i := 0; i < 5; i++ {
 	var rowRows = []string{"Cell 1", "Cell 2", "Cell 3", "Cell 4"}
-	rows = append(rows, ttuy.Row{columns: rowRows})
+	rows = append(rows, ttuy.Row{Columns: rowRows})
 }
 ttuy.Table(headers, rows)
 ```
