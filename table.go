@@ -32,7 +32,7 @@ func Table(headers []string, rows []Row) {
 	fmt.Println(line)
 	for _, row := range rows {
 		fmt.Print(Style("|", Dim))
-		for c, column := range row.columns {
+		for c, column := range row.Columns {
 			fmt.Printf(" %s", column)
 			if len(column) < dimensions[c] {
 				var spaceDiff = dimensions[c] - len(column)
@@ -48,14 +48,14 @@ func Table(headers []string, rows []Row) {
 }
 
 func combineHeadersRows(headers *[]string, rows *[]Row) {
-	var headersRow = Row{columns: *headers}
+	var headersRow = Row{Columns: *headers}
 	combined = append(combined, headersRow)
 	combined = append(combined, *rows...)
 }
 
 func makeLine() (line string) {
 	line = "+"
-	for c := range combined[0].columns {
+	for c := range combined[0].Columns {
 		var columnLength = dimensions[c] + 2
 		for idx := 0; idx < columnLength; idx++ {
 			line += "-"
@@ -69,8 +69,8 @@ func makeLine() (line string) {
 func checkEven(rows *[]Row) {
 	for _, row := range *rows {
 		for _, otherRow := range combined {
-			if len(row.columns) != len(otherRow.columns) {
-				panic("Uneven table! Number of columns inconsistent!")
+			if len(row.Columns) != len(otherRow.Columns) {
+				panic("Uneven table! Number of Columns inconsistent!")
 			}
 		}
 	}
@@ -79,7 +79,7 @@ func checkEven(rows *[]Row) {
 func calcDimensions(rows *[]Row) {
 	dimensions = make(map[int]int)
 	for _, row := range *rows {
-		for c, column := range row.columns {
+		for c, column := range row.Columns {
 			if length, ok := dimensions[c]; ok {
 				if len(column) > length {
 					dimensions[c] = len(column)

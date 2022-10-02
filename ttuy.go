@@ -20,7 +20,7 @@ var bullet = "\u2022"
 var dimensions map[int]int
 
 type Row struct {
-	columns []string
+	Columns []string
 }
 
 func eols(times int) (eols string) {

@@ -97,7 +97,7 @@ func TestTable(t *testing.T) {
 	var rows []Row
 	for i := 0; i < 5; i++ {
 		var rowRows = []string{"Cell 1", "Cell 2", "Cell 3", "Cell 4"}
-		rows = append(rows, Row{columns: rowRows})
+		rows = append(rows, Row{Columns: rowRows})
 	}
 	Table(headers, rows)
 }

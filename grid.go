@@ -14,9 +14,9 @@ func Grid(rows []Row) {
 	terminalCols()
 	calcDimensions(&rows)
 	checkEven(&rows)
-	var colLength = cols / len(rows[0].columns)
+	var colLength = cols / len(rows[0].Columns)
 	for _, row := range rows {
-		for _, col := range row.columns {
+		for _, col := range row.Columns {
 			var colChars = strings.Split(col, "")
 			if len(col) > colLength {
 				for i := 0; i < (colLength - 3); i++ {
