@@ -33,9 +33,9 @@ ttuy.Ask("Enter your name", &name)
 
 ```go
 if ttuy.Prompt("Install Program? This will take up 586kb.") {
-	fmt.Println("Installing...")
+    fmt.Println("Installing...")
 } else {
-	fmt.Println("Installation Canceled.")
+    fmt.Println("Installation Canceled.")
 }
 ```
 
@@ -45,9 +45,9 @@ if ttuy.Prompt("Install Program? This will take up 586kb.") {
 
 ```go
 if ttuy.YesNo("Are you sure?") {
-	fmt.Println("Installing...")
+    fmt.Println("Installing...")
 } else {
-	fmt.Println("Installation Canceled.")
+    fmt.Println("Installation Canceled.")
 }
 ```
 
@@ -90,8 +90,8 @@ ttuy.Menu("Title", []ttuy.Option{
 var headers = []string{"Header 1", "Header 2", "Header 3", "Header 4"}
 var rows []ttuy.Row
 for i := 0; i < 5; i++ {
-	var rowRows = []string{"Cell 1", "Cell 2", "Cell 3", "Cell 4"}
-	rows = append(rows, ttuy.Row{Columns: rowRows})
+    var rowRows = []string{"Cell 1", "Cell 2", "Cell 3", "Cell 4"}
+    rows = append(rows, ttuy.Row{Columns: rowRows})
 }
 ttuy.Table(headers, rows)
 ```
@@ -104,15 +104,15 @@ ttuy.Table(headers, rows)
 var alphabet = strings.Split("abcdefghijklmnopqrstuvwxyz", "")
 var rows []ttuy.Row
 for i := 0; i < 10; i++ {
-	var rowRows []string
-	for c := 1; c < 5; c++ {
-		var cellContent string
-		for w := 0; w < 26; w++ {
-			cellContent += alphabet[w]
-		}
-		rowRows = append(rowRows, cellContent)
-	}
-	rows = append(rows, ttuy.Row{columns: rowRows})
+    var rowRows []string
+    for c := 1; c < 5; c++ {
+        var cellContent string
+        for w := 0; w < 26; w++ {
+            cellContent += alphabet[w]
+        }
+        rowRows = append(rowRows, cellContent)
+    }
+    rows = append(rows, ttuy.Row{columns: rowRows})
 }
 fmt.Println(ttuy.Grid(rows))
 ```
@@ -131,8 +131,8 @@ ttuy.Viewport(fileContents)
 
 ```go
 for i := 0; i <= 100; i++ {
-    ttuy.ProgressBar(i)
-    time.Sleep(100 * time.Millisecond)
+ttuy.ProgressBar(i)
+time.Sleep(100 * time.Millisecond)
 }
 ```
 
@@ -167,6 +167,7 @@ ttuy.TypewriterTimed("Typed out at duration...", 1000)
 ![TypewriterTimed](https://user-images.githubusercontent.com/4368524/192031989-fbb7b350-ddf0-4c84-897e-630e91e292df.gif)
 
 Print contents of file, some ASCII art for example...
+
 ```go
 ttuy.File("logo.txt")
 ```
