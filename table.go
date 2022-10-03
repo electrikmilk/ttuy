@@ -28,7 +28,7 @@ func Table(headers []string, rows []Row) {
 		}
 		fmt.Print(Style(" |", Dim))
 	}
-	fmt.Print(eol())
+	fmt.Print(eol)
 	fmt.Println(line)
 	for _, row := range rows {
 		fmt.Print(Style("|", Dim))
@@ -42,7 +42,7 @@ func Table(headers []string, rows []Row) {
 			}
 			fmt.Print(Style(" |", Dim))
 		}
-		fmt.Print(eol())
+		fmt.Print(eol)
 	}
 	fmt.Println(line)
 }

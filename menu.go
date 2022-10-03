@@ -40,15 +40,15 @@ func Menu(title string, options []Option) {
 	firstAvailable()
 	Painter(func() (menu string) {
 		if lastOptionIndex != optionIndex {
-			menu = Style(menuTitle, Bold, GreenText) + eol()
+			menu = Style(menuTitle, Bold, GreenText) + eol
 			for i, option := range menuOptions {
 				switch {
 				case option.Disabled:
-					menu += Style(fmt.Sprintf(notSelected+" %s"+eol(), option.Label), Dim)
+					menu += Style(fmt.Sprintf(notSelected+" %s"+eol, option.Label), Dim)
 				case i == optionIndex:
-					menu += Style(selected, MagentaText) + fmt.Sprintf(" %s"+eol(), option.Label)
+					menu += Style(selected, MagentaText) + fmt.Sprintf(" %s"+eol, option.Label)
 				default:
-					menu += fmt.Sprintf(notSelected+" %s"+eol(), option.Label)
+					menu += fmt.Sprintf(notSelected+" %s"+eol, option.Label)
 				}
 			}
 			lastMenuContent = menu

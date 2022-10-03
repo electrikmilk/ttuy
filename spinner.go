@@ -34,7 +34,7 @@ var stop = make(chan bool)
 // You must use a goroutine when running this function (e.g. go Spinner(...))
 func Spinner(status string, style SpinnerStyle) {
 	cursorHide()
-	fmt.Print(eol())
+	fmt.Print(eol)
 	linePrev(1)
 	for {
 		select {
@@ -83,6 +83,6 @@ func Spinner(status string, style SpinnerStyle) {
 func StopSpinner() {
 	stop <- true
 	clearLine()
-	fmt.Print(eol())
+	fmt.Print(eol)
 	cursorShow()
 }

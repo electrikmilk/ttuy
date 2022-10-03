@@ -55,7 +55,7 @@ func Painter(callback Template) {
 
 func makeRoom() {
 	for i := 0; i < lineCount; i++ {
-		fmt.Print(eol())
+		fmt.Print(eol)
 	}
 	linePrev(lineCount)
 }
@@ -91,7 +91,7 @@ func replaceLine(line string) {
 }
 
 func splitCount() {
-	lines = strings.Split(content, eol())
+	lines = strings.Split(content, eol)
 	lineCount = len(lines)
 }
 

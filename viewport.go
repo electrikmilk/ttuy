@@ -30,7 +30,7 @@ func Viewport(content string) {
 	lineIdx = 0
 	lastLineIdx = -1
 	contents = wrapString(&content, cols)
-	contentsLines = strings.Split(contents, eol())
+	contentsLines = strings.Split(contents, eol)
 	contentsLinesCount = len(contentsLines)
 	go readKeys(handleViewportKeys)
 	Painter(func() (template string) {
@@ -42,7 +42,7 @@ func Viewport(content string) {
 					for c := 0; c < (cols - len(contentsLines[i]) - 1); c++ {
 						template += " "
 					}
-					template += eol()
+					template += eol
 				}
 			}
 			if matchingRows < rows {
@@ -50,10 +50,10 @@ func Viewport(content string) {
 					for c := 0; c < cols; c++ {
 						template += " "
 					}
-					template += eol()
+					template += eol
 				}
 			}
-			template += eol() + Style("^C Exit \t "+upArrow+" "+downArrow+" Scroll", Dim)
+			template += eol + Style("^C Exit \t "+upArrow+" "+downArrow+" Scroll", Dim)
 			lastViewport = template
 		} else {
 			template = lastViewport
@@ -66,12 +66,12 @@ func wrapString(str *string, limit int) (wrapped string) {
 	chars := strings.Split(*str, "")
 	i := 0
 	for _, char := range chars {
-		if char == eol() || i == limit {
+		if char == eol || i == limit {
 			if i == limit {
-				wrapped += eol() + char
+				wrapped += eol + char
 				i = 1
 			} else {
-				wrapped += eol()
+				wrapped += eol
 				i = 0
 			}
 			continue

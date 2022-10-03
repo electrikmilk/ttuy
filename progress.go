@@ -47,7 +47,7 @@ func bar(status int) (bar string) {
 	fmt.Print("\u2502 " + Style(fmt.Sprintf("%d%%", status), Bold, GreenText))
 	// bottom
 	if status == 0 {
-		fmt.Print(eol())
+		fmt.Print(eol)
 		fmt.Print("\u2514")
 		for i := 0; i < (progressBlocks + remain); i++ {
 			fmt.Print("\u2500")

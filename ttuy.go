@@ -25,7 +25,7 @@ type Row struct {
 
 func eols(times int) (eols string) {
 	for i := 0; i < times; i++ {
-		eols += eol()
+		eols += eol
 	}
 	return
 }

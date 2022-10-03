@@ -18,7 +18,7 @@ func File(path string) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf(string(bytes) + eol())
+	fmt.Printf(string(bytes) + eol)
 }
 
 // Ask prints your prompt and feeds input from os.Stdin into store
@@ -32,7 +32,7 @@ func Ask(prompt string, store *string) {
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
-	fmt.Print(eol())
+	fmt.Print(eol)
 }
 
 // AskSecret prints your prompt and feeds input from os.Stdin into store but hides the input
@@ -46,7 +46,7 @@ func AskSecret(prompt string, store *string) {
 	if err := scanner.Err(); err != nil {
 		panic(err)
 	}
-	fmt.Print(CSI + "0m" + eol())
+	fmt.Print(CSI + "0m" + eol)
 }
 
 // YesNo prints a prompt that waits for "y" or "n" from os.Stdin and returns a boolean based on the input
@@ -86,6 +86,6 @@ func TypewriterTimed(message string, duration time.Duration) {
 		chars++
 		time.Sleep(duration * time.Millisecond)
 	}
-	fmt.Print(eol())
+	fmt.Print(eol)
 	cursorShow()
 }

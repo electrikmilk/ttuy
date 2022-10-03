@@ -30,7 +30,7 @@ func Grid(rows []Row) (grid string) {
 				}
 			}
 		}
-		grid += eol()
+		grid += eol
 	}
 	return
 }

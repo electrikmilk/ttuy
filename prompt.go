@@ -17,11 +17,11 @@ var lastPrompt string
 
 // Prompt prints a prompt for the user to choose yes or no using the arrow keys then returns a boolean based on the option chosen
 func Prompt(prompt string) (proceed bool) {
-	fmt.Print(eol())
+	fmt.Print(eol)
 	go readKeys(handlePromptKeys)
 	Painter(func() (template string) {
 		if optionSelected != lastOptionSelected {
-			template = Style(prompt, Bold, GreenText) + eol()
+			template = Style(prompt, Bold, GreenText) + eol
 			if optionSelected == 1 {
 				template += Style(" Yes ", Inverted, Bold)
 				proceed = true
@@ -43,7 +43,7 @@ func Prompt(prompt string) (proceed bool) {
 		}
 		return
 	})
-	fmt.Print(eol())
+	fmt.Print(eol)
 	return
 }
 

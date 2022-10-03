@@ -6,6 +6,4 @@
 
 package ttuy
 
-func eol() string {
-	return "\n"
-}
+const eol = "\n"
