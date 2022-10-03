@@ -9,8 +9,8 @@ import (
 	"strings"
 )
 
-// Grid evenly cells in rows in a grid
-func Grid(rows []Row) {
+// Grid arranges cells in rows in a grid
+func Grid(rows []Row) (grid string) {
 	terminalCols()
 	calcDimensions(&rows)
 	checkEven(&rows)
@@ -20,17 +20,17 @@ func Grid(rows []Row) {
 			var colChars = strings.Split(col, "")
 			if len(col) > colLength {
 				for i := 0; i < (colLength - 3); i++ {
-					fmt.Print(colChars[i])
+					grid += colChars[i]
 				}
-				fmt.Print("...")
+				grid += "..."
 			} else {
 				fmt.Print(col)
 				for i := 0; i < (colLength - len(colChars)); i++ {
-					fmt.Print(" ")
+					grid += " "
 				}
 			}
 		}
-		fmt.Print(eol())
+		grid += eol()
 	}
-	fmt.Print(eol())
+	return
 }

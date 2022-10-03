@@ -116,7 +116,7 @@ func TestGrid(t *testing.T) {
 		}
 		rows = append(rows, Row{Columns: rowRows})
 	}
-	Grid(rows)
+	fmt.Println(Grid(rows))
 }
 
 func TestStyle(t *testing.T) {
