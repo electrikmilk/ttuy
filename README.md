@@ -114,7 +114,7 @@ for i := 0; i < 10; i++ {
 	}
 	rows = append(rows, ttuy.Row{columns: rowRows})
 }
-ttuy.Grid(rows)
+fmt.Println(ttuy.Grid(rows))
 ```
 
 ![Grid](https://user-images.githubusercontent.com/4368524/193421608-71051c8d-8f77-4cd8-b1c6-ff685d41b46b.png)
