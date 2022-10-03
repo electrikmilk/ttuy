@@ -17,12 +17,12 @@ func Style(str string, styles ...SGR) (styled string) {
 
 // Foreground style str using code
 func Foreground(str string, code int) string {
-	return customStyle(str, FG, code)
+	return customStyle(str, fg, code)
 }
 
 // Background style str using code
 func Background(str string, code int) string {
-	return customStyle(str, BG, code)
+	return customStyle(str, bg, code)
 }
 
 func customStyle(str string, plane SGR, code int) string {

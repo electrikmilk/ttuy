@@ -6,8 +6,8 @@ package ttuy
 
 type SGR string
 
-var FG SGR = "38;5;"
-var BG SGR = "48;5;"
+var fg SGR = "38;5;"
+var bg SGR = "48;5;"
 
 // Decorations
 
@@ -40,36 +40,36 @@ const brightMagenta SGR = "13"
 const brightCyan SGR = "14"
 const white SGR = "15"
 
-var BlackText = FG + black
-var RedText = FG + red
-var GreenText = FG + green
-var YellowText = FG + yellow
-var BlueText = FG + blue
-var MagentaText = FG + magenta
-var CyanText = FG + cyan
-var WhiteText = FG + white
+var BlackText = fg + black
+var RedText = fg + red
+var GreenText = fg + green
+var YellowText = fg + yellow
+var BlueText = fg + blue
+var MagentaText = fg + magenta
+var CyanText = fg + cyan
+var WhiteText = fg + white
 
-var GrayText = FG + gray
-var BrightRedText = FG + brightRed
-var BrightGreenText = FG + brightGreen
-var BrightYellowText = FG + brightYellow
-var BrightBlueText = FG + brightBlue
-var BrightMagentaText = FG + brightMagenta
-var BrightCyanText = FG + brightCyan
+var GrayText = fg + gray
+var BrightRedText = fg + brightRed
+var BrightGreenText = fg + brightGreen
+var BrightYellowText = fg + brightYellow
+var BrightBlueText = fg + brightBlue
+var BrightMagentaText = fg + brightMagenta
+var BrightCyanText = fg + brightCyan
 
-var BlackBg = BG + black
-var RedBg = BG + red
-var GreenBg = BG + green
-var YellowBg = BG + yellow
-var BlueBg = BG + blue
-var MagentaBg = BG + magenta
-var CyanBg = BG + cyan
-var WhiteBg = BG + white
+var BlackBg = bg + black
+var RedBg = bg + red
+var GreenBg = bg + green
+var YellowBg = bg + yellow
+var BlueBg = bg + blue
+var MagentaBg = bg + magenta
+var CyanBg = bg + cyan
+var WhiteBg = bg + white
 
-var GrayBg = BG + gray
-var BrightRedBg = BG + brightRed
-var BrightGreenBg = BG + brightGreen
-var BrightYellowBg = BG + brightYellow
-var BrightBlueBg = BG + brightBlue
-var BrightMagentaBg = BG + brightMagenta
-var BrightCyanBg = BG + brightCyan
+var GrayBg = bg + gray
+var BrightRedBg = bg + brightRed
+var BrightGreenBg = bg + brightGreen
+var BrightYellowBg = bg + brightYellow
+var BrightBlueBg = bg + brightBlue
+var BrightMagentaBg = bg + brightMagenta
+var BrightCyanBg = bg + brightCyan
