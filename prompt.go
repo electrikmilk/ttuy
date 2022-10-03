@@ -19,7 +19,7 @@ var lastPrompt string
 func Prompt(prompt string) (proceed bool) {
 	fmt.Print(eol())
 	go readKeys(handlePromptKeys)
-	painter(func() (template string) {
+	Painter(func() (template string) {
 		if optionSelected != lastOptionSelected {
 			template = Style(prompt, Bold, GreenText) + eol()
 			if optionSelected == 1 {
@@ -58,7 +58,7 @@ func handlePromptKeys(key any) {
 			optionSelected = 0
 		}
 	case keyboard.KeyEnter:
-		stopPainting()
+		StopPainting()
 		return
 	}
 }

@@ -33,7 +33,7 @@ func Viewport(content string) {
 	contentsLines = strings.Split(contents, eol())
 	contentsLinesCount = len(contentsLines)
 	go readKeys(handleViewportKeys)
-	painter(func() (template string) {
+	Painter(func() (template string) {
 		if lineIdx != lastLineIdx {
 			var matchingRows = rows + lineIdx - 1
 			for i := lineIdx; i < matchingRows; i++ {
@@ -89,7 +89,7 @@ func handleViewportKeys(key any) {
 	default:
 		switch key {
 		case keyboard.KeyCtrlC:
-			stopPainting()
+			StopPainting()
 			stopViewport <- true
 		case keyboard.KeyArrowUp:
 			if (lineIdx - 1) >= 0 {

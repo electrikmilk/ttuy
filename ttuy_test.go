@@ -255,10 +255,10 @@ func TestPainter(*testing.T) {
 	var lastText string
 	go readKeys(func(key any) {
 		if key == keyboard.KeyCtrlC {
-			stopPainting()
+			StopPainting()
 		}
 	})
-	painter(func() (template string) {
+	Painter(func() (template string) {
 		var text string
 		switch rand.Intn(4) {
 		case 1:

@@ -38,7 +38,7 @@ func Menu(title string, options []Option) {
 	optionCount = len(menuOptions)
 	go readKeys(handleMenuKeys)
 	firstAvailable()
-	painter(func() (menu string) {
+	Painter(func() (menu string) {
 		if lastOptionIndex != optionIndex {
 			menu = Style(menuTitle, Bold, GreenText) + eol()
 			for i, option := range menuOptions {
@@ -105,7 +105,7 @@ func handleMenuKeys(key any) {
 	case keyboard.KeyEnter:
 		selectedOption := menuOptions[optionIndex]
 		selectedOption.Callback()
-		stopPainting()
+		StopPainting()
 		return
 	}
 }

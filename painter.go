@@ -20,11 +20,11 @@ var lastLines []string
 
 var diff int
 
-type template func() string
+type Template func() string
 
 var stopPaint = make(chan bool)
 
-func painter(callback template) {
+func Painter(callback Template) {
 	lastContent = ""
 	lastLineCount = 0
 	currentLine = 0
@@ -87,7 +87,7 @@ func paint() {
 
 func replaceLine(line string) {
 	clearLine()
-	fmt.Printf("%s\r", line)
+	fmt.Print(line)
 }
 
 func splitCount() {
@@ -101,6 +101,6 @@ func last() {
 	lastLines = lines
 }
 
-func stopPainting() {
+func StopPainting() {
 	stopPaint <- true
 }
