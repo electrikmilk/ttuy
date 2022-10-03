@@ -8,7 +8,6 @@ import (
 	"strings"
 
 	"github.com/eiannone/keyboard"
-	"github.com/muesli/reflow/wordwrap"
 )
 
 var lineIdx int
@@ -26,13 +25,13 @@ var contentsLinesCount int
 var lastViewport string
 
 func Viewport(content string) {
-	lineIdx = 0
-	lastLineIdx = -1
-	contents = wordwrap.String(content, cols-2)
-	contentsLines = strings.Split(contents, eol())
-	contentsLinesCount = len(contentsLines)
 	terminalRows()
 	terminalCols()
+	lineIdx = 0
+	lastLineIdx = -1
+	contents = wrapString(&content, cols)
+	contentsLines = strings.Split(contents, eol())
+	contentsLinesCount = len(contentsLines)
 	go readKeys(handleViewportKeys)
 	painter(func() (template string) {
 		if lineIdx != lastLineIdx {
@@ -61,6 +60,26 @@ func Viewport(content string) {
 		}
 		return
 	})
+}
+
+func wrapString(str *string, limit int) (wrapped string) {
+	chars := strings.Split(*str, "")
+	i := 0
+	for _, char := range chars {
+		if char == eol() || i == limit {
+			if i == limit {
+				wrapped += eol() + char
+				i = 1
+			} else {
+				wrapped += eol()
+				i = 0
+			}
+			continue
+		}
+		wrapped += char
+		i++
+	}
+	return
 }
 
 func handleViewportKeys(key any) {
