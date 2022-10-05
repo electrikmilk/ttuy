@@ -131,8 +131,8 @@ ttuy.Viewport(fileContents)
 
 ```go
 for i := 0; i <= 100; i++ {
-ttuy.ProgressBar(i)
-time.Sleep(100 * time.Millisecond)
+    ttuy.ProgressBar(i)
+    time.Sleep(100 * time.Millisecond)
 }
 ```
 
