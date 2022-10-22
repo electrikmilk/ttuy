@@ -4,6 +4,7 @@
 
 <p>
     <a href="https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
+    <a href="https://goreportcard.com/report/github.com/electrikmilk/ttuy"><img src="https://goreportcard.com/badge/github.com/electrikmilk/ttuy"/></a>
 </p>
 
 **ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI framework.
