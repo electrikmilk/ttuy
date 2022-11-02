@@ -201,7 +201,6 @@ func TestOutput(t *testing.T) {
 	// Failf("%s", message)
 }
 
-/*
 func TestMenu(*testing.T) {
 	var chosen string
 	Menu("Title", []Option{
@@ -275,4 +274,3 @@ func TestPainter(*testing.T) {
 		return
 	})
 }
-*/
