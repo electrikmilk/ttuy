@@ -6,13 +6,10 @@ package ttuy
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/eiannone/keyboard"
 )
 
 func TestProgressBar(t *testing.T) {
@@ -204,6 +201,7 @@ func TestOutput(t *testing.T) {
 	// Failf("%s", message)
 }
 
+/*
 func TestMenu(*testing.T) {
 	var chosen string
 	Menu("Title", []Option{
@@ -277,3 +275,4 @@ func TestPainter(*testing.T) {
 		return
 	})
 }
+*/
