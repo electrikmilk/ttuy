@@ -6,10 +6,13 @@ package ttuy
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"strings"
 	"testing"
 	"time"
+
+	"github.com/eiannone/keyboard"
 )
 
 func TestProgressBar(t *testing.T) {
@@ -272,5 +275,12 @@ func TestPainter(*testing.T) {
 			template = lastText
 		}
 		return
+	})
+}
+
+func TestSegmented(t *testing.T) {
+	Painter(func() string {
+		time.Sleep(500 * time.Millisecond)
+		return fmt.Sprintf("%s", Segmented(rand.Intn(9), rand.Intn(9), rand.Intn(9), rand.Intn(9)))
 	})
 }
