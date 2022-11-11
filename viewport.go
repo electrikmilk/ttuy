@@ -24,6 +24,7 @@ var contentsLinesCount int
 
 var lastViewport string
 
+// Viewport displays content in a scrollable widget
 func Viewport(content string) {
 	terminalRows()
 	terminalCols()
