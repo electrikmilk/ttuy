@@ -24,6 +24,8 @@ type Template func() string
 
 var stopPaint = make(chan bool)
 
+// Painter prints and updates content received from Template
+// Learn more: https://github.com/electrikmilk/ttuy/wiki/Painter()
 func Painter(callback Template) {
 	lastContent = ""
 	lastLineCount = 0
