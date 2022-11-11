@@ -11,11 +11,16 @@ import (
 var rows int
 var cols int
 
-var upArrow = "\u2191"
-var downArrow = "\u2193"
-var leftArrow = "\u2190"
-var rightArrow = "\u2192"
-var bullet = "\u2022"
+const (
+	upArrow    = "\u2191"
+	downArrow  = "\u2193"
+	leftArrow  = "\u2190"
+	rightArrow = "\u2192"
+	bullet     = "\u2022"
+	upper      = "\u203E"
+	lower      = "_"
+	line       = "|"
+)
 
 var dimensions map[int]int
 
