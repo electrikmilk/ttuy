@@ -19,6 +19,8 @@ type segments struct {
 
 var numbers map[string]segments
 
+// Segmented transforms n into a series of characters resembling a segmented display.
+// It accepts numbers 0-9 and colons. Example: "20:00"
 func Segmented(n string) string {
 	if len(numbers) == 0 {
 		numbers = make(map[string]segments)
