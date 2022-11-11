@@ -4,11 +4,7 @@
 
 package ttuy
 
-const (
-	upper = "\u203E"
-	lower = "_"
-	line  = "|"
-)
+import "strings"
 
 type segments struct {
 	a string
@@ -18,15 +14,17 @@ type segments struct {
 	e string
 	f string
 	g string
+	h string
 }
 
-var numbers map[int]segments
+var numbers map[string]segments
 
-func Segmented(nums ...int) string {
+func Segmented(n string) string {
 	if len(numbers) == 0 {
-		numbers = make(map[int]segments)
+		numbers = make(map[string]segments)
 	}
 	makeNumbers()
+	var nums = strings.Split(n, "")
 	var line1 string
 	var line2 string
 	var line3 string
@@ -38,7 +36,7 @@ func Segmented(nums ...int) string {
 		line2 += numbers[number].f + numbers[number].g + numbers[number].b + " "
 	}
 	for _, number := range nums {
-		line3 += numbers[number].e + " " + numbers[number].c + " "
+		line3 += numbers[number].e + numbers[number].h + numbers[number].c + " "
 	}
 	for _, number := range nums {
 		line4 += " " + numbers[number].d + "  "
@@ -49,13 +47,10 @@ func Segmented(nums ...int) string {
 	segments += line3 + eol
 	segments += line4 + eol
 	return segments
-	// Painter(func() string {
-	// 	return ""
-	// })
 }
 
 func makeNumbers() {
-	numbers[0] = segments{
+	numbers["0"] = segments{
 		a: lower,
 		b: line,
 		c: line,
@@ -63,8 +58,9 @@ func makeNumbers() {
 		e: line,
 		f: line,
 		g: " ",
+		h: " ",
 	}
-	numbers[1] = segments{
+	numbers["1"] = segments{
 		a: " ",
 		b: line,
 		c: line,
@@ -72,8 +68,9 @@ func makeNumbers() {
 		e: " ",
 		f: " ",
 		g: " ",
+		h: " ",
 	}
-	numbers[2] = segments{
+	numbers["2"] = segments{
 		a: lower,
 		b: line,
 		c: " ",
@@ -81,8 +78,9 @@ func makeNumbers() {
 		e: line,
 		f: " ",
 		g: lower,
+		h: " ",
 	}
-	numbers[3] = segments{
+	numbers["3"] = segments{
 		a: lower,
 		b: line,
 		c: line,
@@ -90,8 +88,9 @@ func makeNumbers() {
 		e: " ",
 		f: " ",
 		g: lower,
+		h: " ",
 	}
-	numbers[4] = segments{
+	numbers["4"] = segments{
 		a: " ",
 		b: line,
 		c: line,
@@ -99,8 +98,9 @@ func makeNumbers() {
 		e: " ",
 		f: line,
 		g: lower,
+		h: " ",
 	}
-	numbers[5] = segments{
+	numbers["5"] = segments{
 		a: lower,
 		b: " ",
 		c: line,
@@ -108,8 +108,9 @@ func makeNumbers() {
 		e: " ",
 		f: line,
 		g: lower,
+		h: " ",
 	}
-	numbers[6] = segments{
+	numbers["6"] = segments{
 		a: lower,
 		b: " ",
 		c: line,
@@ -117,8 +118,9 @@ func makeNumbers() {
 		e: line,
 		f: line,
 		g: lower,
+		h: " ",
 	}
-	numbers[7] = segments{
+	numbers["7"] = segments{
 		a: lower,
 		b: line,
 		c: line,
@@ -126,8 +128,9 @@ func makeNumbers() {
 		e: " ",
 		f: " ",
 		g: " ",
+		h: " ",
 	}
-	numbers[8] = segments{
+	numbers["8"] = segments{
 		a: lower,
 		b: line,
 		c: line,
@@ -135,8 +138,9 @@ func makeNumbers() {
 		e: line,
 		f: line,
 		g: lower,
+		h: " ",
 	}
-	numbers[9] = segments{
+	numbers["9"] = segments{
 		a: lower,
 		b: line,
 		c: line,
@@ -144,5 +148,16 @@ func makeNumbers() {
 		e: " ",
 		f: line,
 		g: lower,
+		h: " ",
+	}
+	numbers[":"] = segments{
+		a: " ",
+		b: " ",
+		c: " ",
+		d: " ",
+		e: " ",
+		f: " ",
+		g: bullet,
+		h: bullet,
 	}
 }
