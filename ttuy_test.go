@@ -279,8 +279,5 @@ func TestPainter(*testing.T) {
 }
 
 func TestSegmented(t *testing.T) {
-	Painter(func() string {
-		time.Sleep(500 * time.Millisecond)
-		return fmt.Sprintf("%s", Segmented(rand.Intn(9), rand.Intn(9), rand.Intn(9), rand.Intn(9)))
-	})
+	fmt.Print(Segmented(fmt.Sprintf("%d:%d:%d", rand.Intn(100), rand.Intn(100), rand.Intn(100))))
 }
