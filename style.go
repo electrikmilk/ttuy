@@ -11,9 +11,10 @@ func Style(str string, styles ...SGR) string {
 	return style(str, true, styles...)
 }
 
-// StylePersist prefixes formats everything after it with SGR sequences
-func StylePersist(styles ...SGR) {
-	fmt.Print(style("", false, styles...))
+// StylePersist outputs SGR sequences with no reset
+// Anything after will be formatted using styles until the Reset constant is used
+func StylePersist(styles ...SGR) string {
+	return style("", false, styles...)
 }
 
 func style(str string, reset bool, styles ...SGR) (styled string) {

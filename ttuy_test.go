@@ -148,7 +148,7 @@ func TestStyle(t *testing.T) {
 }
 
 func TestStylePersist(t *testing.T) {
-	StylePersist(YellowText, GrayBg)
+	fmt.Print(StylePersist(YellowText, GrayBg))
 	fmt.Println("This should be in the set style." + Reset)
 	fmt.Println("This should be reset.")
 }
