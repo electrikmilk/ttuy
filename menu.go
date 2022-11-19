@@ -36,7 +36,7 @@ func Menu(title string, options []Option) {
 	lastOptionIndex = -1
 	lastMenuContent = ""
 	optionCount = len(menuOptions)
-	go readKeys(handleMenuKeys)
+	go ReadKeys(handleMenuKeys)
 	firstAvailable()
 	Painter(func() (menu string) {
 		if lastOptionIndex != optionIndex {
