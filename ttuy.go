@@ -8,6 +8,8 @@ import (
 	"github.com/olekukonko/ts"
 )
 
+const CSI = "\033["
+
 var rows int
 var cols int
 

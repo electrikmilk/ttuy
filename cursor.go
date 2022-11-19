@@ -6,8 +6,6 @@ package ttuy
 
 import "fmt"
 
-const CSI = "\033["
-
 /*
 A = UP
 B = DOWN
