@@ -28,69 +28,69 @@ ES = LF
 
 var currentLine int
 
-func backUp() {
-	linePrev(currentLine)
+func BackUp() {
+	LinePrev(currentLine)
 	currentLine = 0
 }
 
-func lineUp(lines int) {
+func LineUp(lines int) {
 	fmt.Printf(CSI+"%dA", lines)
 }
 
-func lineDown(lines int) {
+func LineDown(lines int) {
 	fmt.Printf(CSI+"%dB", lines)
 }
 
-func lineNext(lines int) {
+func LineNext(lines int) {
 	fmt.Printf(CSI+"%dE", lines)
 	currentLine++
 }
 
-func linePrev(lines int) {
+func LinePrev(lines int) {
 	fmt.Printf(CSI+"%dF", lines)
 }
 
 func lineFeed() {
-	lineNext(1)
-	scrollUp(1)
+	LineNext(1)
+	ScrollUp(1)
 }
 
-func cursor(row int, col int) {
+func Cursor(row int, col int) {
 	fmt.Printf(CSI+"%d;%dH", row, col)
 }
 
-func cursorFwd(columns int) {
+func CursorFwd(columns int) {
 	fmt.Printf(CSI+"%dC", columns)
 }
 
-func cursorBack(columns int) {
+func CursorBack(columns int) {
 	fmt.Printf(CSI+"%dD", columns)
 }
 
-func cursorStart() {
+func CursorStart() {
 	fmt.Print(CSI + "1G")
 }
 
-func cursorHide() {
+func CursorHide() {
 	fmt.Printf(CSI + "?25l")
 }
 
-func cursorShow() {
+func CursorShow() {
 	fmt.Printf(CSI + "?25h")
 }
 
-func clearLine() {
+func ClearLine() {
 	fmt.Printf(CSI + "0K")
 }
 
-func clearDisplay() {
+func ClearDisplay() {
 	fmt.Printf(CSI + "0J")
 }
 
-func scrollUp(lines int) {
+func ScrollUp(lines int) {
 	fmt.Printf(CSI+"%dS", lines)
 }
 
-func scrollDown(lines int) {
+func ScrollDown(lines int) {
 	fmt.Printf(CSI+"%dT", lines)
 }

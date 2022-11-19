@@ -10,12 +10,12 @@ import (
 
 // ProgressBar prints a progress bar
 func ProgressBar(status int) {
-	cursorHide()
+	CursorHide()
 	bar(status)
 	if status == 100 {
 		lineFeed()
 		lineFeed()
-		cursorShow()
+		CursorShow()
 	}
 }
 
@@ -27,16 +27,16 @@ func bar(status int) (bar string) {
 	remain := cols - progressBlocks
 	if status == 0 {
 		lineFeed()
-		linePrev(1)
+		LinePrev(1)
 		fmt.Print("\u250C")
 		for i := 0; i < (progressBlocks + remain); i++ {
 			fmt.Print("\u2500")
 		}
 		fmt.Print("\u2510")
 	}
-	lineNext(1)
+	LineNext(1)
 	// middle
-	clearLine()
+	ClearLine()
 	fmt.Print("\u2502")
 	for i := 0; i < progressBlocks; i++ {
 		fmt.Print(Style("\u2590", CyanText))
@@ -53,8 +53,8 @@ func bar(status int) (bar string) {
 			fmt.Print("\u2500")
 		}
 		fmt.Print("\u2518")
-		linePrev(1)
+		LinePrev(1)
 	}
-	linePrev(1)
+	LinePrev(1)
 	return
 }

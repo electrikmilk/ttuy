@@ -32,17 +32,17 @@ func Painter(callback Template) {
 	currentLine = 0
 	lastLines = []string{}
 	content = callback()
-	cursorHide()
+	CursorHide()
 	splitCount()
 	for {
 		select {
 		case <-stopPaint:
 			fmt.Println(content)
-			cursorShow()
+			CursorShow()
 			return
 		default:
 			if currentLine != 0 {
-				backUp()
+				BackUp()
 			}
 			content = callback()
 			if content != lastContent {
@@ -59,7 +59,7 @@ func makeRoom() {
 	for i := 0; i < lineCount; i++ {
 		fmt.Print(eol)
 	}
-	linePrev(lineCount)
+	LinePrev(lineCount)
 }
 
 func paint() {
@@ -74,21 +74,21 @@ func paint() {
 		} else {
 			replaceLine(line)
 		}
-		lineNext(1)
+		LineNext(1)
 	}
 	if lastLineCount != 0 {
 		if lastLineCount > lineCount {
 			diff = lastLineCount - lineCount
 			for i := 0; i < diff; i++ {
-				clearLine()
-				lineNext(1)
+				ClearLine()
+				LineNext(1)
 			}
 		}
 	}
 }
 
 func replaceLine(line string) {
-	clearLine()
+	ClearLine()
 	fmt.Print(line)
 }
 

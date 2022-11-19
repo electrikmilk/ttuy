@@ -75,7 +75,7 @@ func Typewriter(message string) {
 
 // TypewriterTimed prints characters in message out one at a time at duration
 func TypewriterTimed(message string, duration time.Duration) {
-	cursorHide()
+	CursorHide()
 	var strChars = strings.Split(message, "")
 	var chars int
 	for i := 0; i <= len(strChars); i++ {
@@ -87,5 +87,5 @@ func TypewriterTimed(message string, duration time.Duration) {
 		time.Sleep(duration * time.Millisecond)
 	}
 	fmt.Print(eol)
-	cursorShow()
+	CursorShow()
 }

@@ -33,9 +33,9 @@ var stop = make(chan bool)
 // Spinner prints a progress indicator in style until StopSpinner() is called
 // You must use a goroutine when running this function (e.g. go Spinner(...))
 func Spinner(status string, style SpinnerStyle) {
-	cursorHide()
+	CursorHide()
 	fmt.Print(eol)
-	linePrev(1)
+	LinePrev(1)
 	for {
 		select {
 		case <-stop:
@@ -44,7 +44,7 @@ func Spinner(status string, style SpinnerStyle) {
 			switch style {
 			case Ticker:
 				for i := 0; i < len(ticks); i++ {
-					clearLine()
+					ClearLine()
 					fmt.Print(Style(ticks[i], CyanText))
 					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
@@ -52,7 +52,7 @@ func Spinner(status string, style SpinnerStyle) {
 				}
 			case DotDotDot:
 				for i := 0; i < len(dots); i++ {
-					clearLine()
+					ClearLine()
 					fmt.Print(Style(status, Bold))
 					fmt.Print(Style(dots[i], Dim))
 					fmt.Print("\r")
@@ -60,7 +60,7 @@ func Spinner(status string, style SpinnerStyle) {
 				}
 			case Throbber:
 				for i := 0; i < len(throbs); i++ {
-					clearLine()
+					ClearLine()
 					fmt.Print(throbs[i])
 					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
@@ -68,7 +68,7 @@ func Spinner(status string, style SpinnerStyle) {
 				}
 			case Blinker:
 				for i := 0; i < len(blinks); i++ {
-					clearLine()
+					ClearLine()
 					fmt.Print(blinks[i])
 					fmt.Print(" " + Style(status, Bold))
 					fmt.Print("\r")
@@ -82,7 +82,7 @@ func Spinner(status string, style SpinnerStyle) {
 // StopSpinner stops the current spinner
 func StopSpinner() {
 	stop <- true
-	clearLine()
+	ClearLine()
 	fmt.Print(eol)
-	cursorShow()
+	CursorShow()
 }
