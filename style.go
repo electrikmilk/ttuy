@@ -7,11 +7,23 @@ package ttuy
 import "fmt"
 
 // Style formats str using styles to prefix str with SGR sequences
-func Style(str string, styles ...SGR) (styled string) {
+func Style(str string, styles ...SGR) string {
+	return style(str, true, styles...)
+}
+
+// StylePersist prefixes formats everything after it with SGR sequences
+func StylePersist(styles ...SGR) {
+	fmt.Print(style("", false, styles...))
+}
+
+func style(str string, reset bool, styles ...SGR) (styled string) {
 	for _, s := range styles {
 		styled += fmt.Sprintf(CSI+"%sm", s)
 	}
-	styled += str + CSI + "0m"
+	styled += str
+	if reset {
+		styled += CSI + "0m"
+	}
 	return
 }
 

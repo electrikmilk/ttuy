@@ -9,6 +9,8 @@ type SGR string
 var fg SGR = "38;5;"
 var bg SGR = "48;5;"
 
+const Reset = CSI + "0m"
+
 // Decorations
 
 const Bold SGR = "1"

@@ -147,6 +147,12 @@ func TestStyle(t *testing.T) {
 	fmt.Println(Style("Text", BlackText, Bold, MagentaBg))
 }
 
+func TestStylePersist(t *testing.T) {
+	StylePersist(YellowText, GrayBg)
+	fmt.Println("This should be in the set style." + Reset)
+	fmt.Println("This should be reset.")
+}
+
 func TestSpinner(t *testing.T) {
 	fmt.Println("Wait a tick")
 	go Spinner("Indeterminate Progress", Ticker)
