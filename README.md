@@ -12,8 +12,6 @@
 
 **ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI framework.
 
-Procedural as in, no models, no complex abstractions, run a function, and it just works.
-
 ```console
 go get github.com/electrikmilk/ttuy
 ```
