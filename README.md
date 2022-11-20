@@ -1,4 +1,6 @@
-![ttuy](https://user-images.githubusercontent.com/4368524/192105220-b950d506-7cd0-43da-ae55-6dc13d249dc0.png)
+<p align=center>
+    <img src="https://user-images.githubusercontent.com/4368524/192105220-b950d506-7cd0-43da-ae55-6dc13d249dc0.png" alt="ttuy"/>
+</p>
 
 # ttuy
 
