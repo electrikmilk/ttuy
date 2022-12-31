@@ -9,27 +9,30 @@ import (
 	"os"
 )
 
-// Fail prints message styled as an error then exits
-func Fail(message string) {
-	var label = Style(" \u2613 Error ", BrightRedBg, BlackText, Bold)
+func printError(label string, message string) {
+	label = Style(fmt.Sprintf(" \u2613 %s ", label), BrightRedBg, BlackText, Bold)
 	message = fmt.Sprintf(" %s", message)
-	message = Style(message, BrightRedBg, Bold)
+	message = Style(message, BrightRedText, Bold)
 	fmt.Println(label + message)
 	os.Exit(1)
+}
+
+// Fail prints message styled as an error then exits
+func Fail(message string) {
+	printError("Error", message)
 }
 
 // Failf prints message formatted and styled as an error then exits
 func Failf(message string, v ...any) {
 	message = fmt.Sprintf(message, v...)
-	Fail(message)
+	printError("Error", message)
 }
 
 // FailErr handles err and prints label with err as a string styled then exits
 func FailErr(label string, err error) {
 	if err != nil {
-		label = Style(fmt.Sprintf(" %s ", label), RedBg, BlackText, Bold)
-		fmt.Println(label + fmt.Sprintf(" %s", err))
-		os.Exit(1)
+		var message = fmt.Sprintf("%s", err)
+		printError(label, message)
 	}
 }
 
