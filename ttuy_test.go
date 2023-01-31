@@ -47,6 +47,31 @@ func TestAsk(t *testing.T) {
 	fmt.Println("You entered:", received)
 }
 
+func TestYesNo(t *testing.T) {
+	input := []byte("y")
+	r, w, err := os.Pipe()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	_, err = w.Write(input)
+	if err != nil {
+		t.Error(err)
+	}
+	err = w.Close()
+	if err != nil {
+		panic(err)
+	}
+
+	// Restore stdin right after the test.
+	defer func(v *os.File) { os.Stdin = v }(os.Stdin)
+	os.Stdin = r
+
+	var received string
+	YesNo("Are you sure?")
+	fmt.Println("You entered:", received)
+}
+
 func TestAskSecret(t *testing.T) {
 	input := []byte("Password123")
 	r, w, err := os.Pipe()
