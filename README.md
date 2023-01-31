@@ -27,3 +27,5 @@ import "github.com/electrikmilk/ttuy"
 - [Keyboard](https://github.com/electrikmilk/ttuy/wiki/Keyboard)
 - [Cursor](https://github.com/electrikmilk/ttuy/wiki/Cursor)
 - [Painter](https://github.com/electrikmilk/ttuy/wiki/Painter)
+
+**ttuy** uses [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code) to manipulate the terminal.
