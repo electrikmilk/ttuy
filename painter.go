@@ -103,6 +103,7 @@ func last() {
 	lastLines = lines
 }
 
+// StopPainting triggers current usage of Painter to stop
 func StopPainting() {
 	stopPaint <- true
 }
