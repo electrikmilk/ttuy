@@ -8,9 +8,9 @@ import (
 	"github.com/eiannone/keyboard"
 )
 
-type InputCallback func(key any)
+type inputCallback func(key any)
 
-func ReadKeys(callback InputCallback) {
+func readKeys(callback inputCallback) {
 	if err := keyboard.Open(); err != nil {
 		panic(err)
 	}
