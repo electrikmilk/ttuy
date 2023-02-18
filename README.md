@@ -24,7 +24,6 @@ import "github.com/electrikmilk/ttuy"
 
 - [Widgets](https://github.com/electrikmilk/ttuy/wiki/Widgets)
 - [Pre-styled print output](https://github.com/electrikmilk/ttuy/wiki/Pre-styled-print-output)
-- [Keyboard](https://github.com/electrikmilk/ttuy/wiki/Keyboard)
 - [Cursor](https://github.com/electrikmilk/ttuy/wiki/Cursor)
 - [Painter](https://github.com/electrikmilk/ttuy/wiki/Painter)
 
