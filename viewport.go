@@ -83,6 +83,22 @@ func wrapString(str *string, limit int) (wrapped string) {
 	return
 }
 
+func moveUp(n int) {
+	if (lineIdx - 1) >= 0 {
+		lineIdx -= n
+	} else {
+		Bell()
+	}
+}
+
+func moveDown(n int) {
+	if (rows + lineIdx - 1) < contentsLinesCount {
+		lineIdx += n
+	} else {
+		Bell()
+	}
+}
+
 func handleViewportKeys(key any) {
 	select {
 	case <-stopViewport:
@@ -92,14 +108,14 @@ func handleViewportKeys(key any) {
 		case keyboard.KeyCtrlC:
 			StopPainting()
 			stopViewport <- true
+		case keyboard.KeyPgup:
+			moveUp(5)
+		case keyboard.KeyPgdn:
+			moveDown(5)
 		case keyboard.KeyArrowUp:
-			if (lineIdx - 1) >= 0 {
-				lineIdx--
-			}
+			moveUp(1)
 		case keyboard.KeyArrowDown:
-			if (rows + lineIdx - 1) < contentsLinesCount {
-				lineIdx++
-			}
+			moveDown(1)
 		}
 	}
 }
