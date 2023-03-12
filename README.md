@@ -4,11 +4,10 @@
 
 # ttuy
 
-<p>
-    <a href="https://github.com/electrikmilk/ttuy/actions/workflows/go.yml"><img src="https://github.com/electrikmilk/ttuy/actions/workflows/go.yml/badge.svg?branch=main" alt="Build"></a>
-    <a href="https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc"><img src="https://godoc.org/github.com/golang/gddo?status.svg" alt="GoDoc"></a>
-    <a href="https://goreportcard.com/report/github.com/electrikmilk/ttuy"><img src="https://goreportcard.com/badge/github.com/electrikmilk/ttuy"/></a>
-</p>
+[![Build](https://github.com/electrikmilk/ttuy/actions/workflows/go.yml/badge.svg?branch=main)](https://github.com/electrikmilk/ttuy/actions/workflows/go.yml)
+[![Releases](https://img.shields.io/github/v/release/electrikmilk/ttuy?include_prereleases)](https://github.com/electrikmilk/ttuy/releases)
+[![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc)
+[![Go Report Card](https://goreportcard.com/badge/github.com/electrikmilk/ttuy)](https://goreportcard.com/report/github.com/electrikmilk/ttuy)
 
 **ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI framework.
 
