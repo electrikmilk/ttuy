@@ -81,7 +81,6 @@ func Successf(message string, v ...any) {
 // # EXAMPLE #
 // ###########
 func BigBanner(message string) (banner string) {
-	terminalRows()
 	terminalCols()
 	banner = "\n"
 	var spaces = (cols - (len(message) + 2)) / 2
@@ -122,7 +121,6 @@ func BigBanner(message string) (banner string) {
 // Banner returns a banner around `message` made of # signs.
 // ######## EXAMPLE ########
 func Banner(message string) (banner string) {
-	terminalRows()
 	terminalCols()
 	banner = "\n"
 	var spaces = (cols - (len(message) + 2)) / 2
