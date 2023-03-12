@@ -308,7 +308,7 @@ func TestSegmented(t *testing.T) {
 	fmt.Print(Segmented(fmt.Sprintf("%d:%d:%d", rand.Intn(100), rand.Intn(100), rand.Intn(100))))
 }
 
-func TestPrintBanner(t *testing.T) {
+func TestBanner(t *testing.T) {
 	fmt.Print(BigBanner("TESTING"))
 	fmt.Print(Banner("TESTING"))
 }
