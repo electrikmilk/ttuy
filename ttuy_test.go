@@ -307,3 +307,8 @@ func TestPainter(*testing.T) {
 func TestSegmented(t *testing.T) {
 	fmt.Print(Segmented(fmt.Sprintf("%d:%d:%d", rand.Intn(100), rand.Intn(100), rand.Intn(100))))
 }
+
+func TestPrintBanner(t *testing.T) {
+	fmt.Print(Style(BigBanner("TESTING"), RedText))
+	fmt.Print(Style(Banner("TESTING"), RedText))
+}

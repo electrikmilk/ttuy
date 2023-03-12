@@ -75,3 +75,64 @@ func Successf(message string, v ...any) {
 	message = fmt.Sprintf(message, v...)
 	Success(message)
 }
+
+// BigBanner returns a box around `message` made of # signs.
+// ###########
+// # EXAMPLE #
+// ###########
+func BigBanner(message string) (banner string) {
+	terminalRows()
+	terminalCols()
+	banner = "\n"
+	var spaces = (cols - (len(message) + 2)) / 2
+	for i := 0; i < cols; i++ {
+		banner += "#"
+	}
+
+	banner += "\n#"
+	for i := 0; i < cols-2; i++ {
+		banner += " "
+	}
+	banner += "#"
+
+	banner += "\n#"
+	for i := 0; i < spaces; i++ {
+		banner += " "
+	}
+	banner += message
+	for i := 0; i < spaces; i++ {
+		banner += " "
+	}
+	banner += "#\n"
+
+	banner += "#"
+	for i := 0; i < cols-2; i++ {
+		banner += " "
+	}
+	banner += "#\n"
+
+	for i := 0; i < cols; i++ {
+		banner += "#"
+	}
+	banner += "\n\n"
+
+	return
+}
+
+// Banner returns a banner around `message` made of # signs.
+// ######## EXAMPLE ########
+func Banner(message string) (banner string) {
+	terminalRows()
+	terminalCols()
+	banner = "\n"
+	var spaces = (cols - (len(message) + 2)) / 2
+	for i := 0; i < spaces; i++ {
+		banner += "#"
+	}
+	banner += " " + message + " "
+	for i := 0; i < spaces; i++ {
+		banner += "#"
+	}
+	banner += "#\n\n"
+	return
+}
