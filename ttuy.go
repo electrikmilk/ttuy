@@ -5,6 +5,8 @@
 package ttuy
 
 import (
+	"fmt"
+
 	"github.com/olekukonko/ts"
 )
 
@@ -45,4 +47,9 @@ func terminalCols() {
 func terminalRows() {
 	size, _ := ts.GetSize()
 	rows = size.Row()
+}
+
+// Bell triggers the system bell which makes the machine make an alarm noise.
+func Bell() {
+	fmt.Print("\a")
 }
