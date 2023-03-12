@@ -6,6 +6,7 @@ package ttuy
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/eiannone/keyboard"
 )
@@ -72,6 +73,10 @@ func firstAvailable() {
 
 func handleMenuKeys(key any) {
 	switch key {
+	case keyboard.KeyCtrlC:
+		StopPainting()
+		CursorShow()
+		os.Exit(0)
 	case keyboard.KeyArrowUp:
 		var nextIndex = optionIndex - 1
 		var nextOptionDisabled = true
