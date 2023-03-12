@@ -309,6 +309,6 @@ func TestSegmented(t *testing.T) {
 }
 
 func TestPrintBanner(t *testing.T) {
-	fmt.Print(Style(BigBanner("TESTING"), RedText))
-	fmt.Print(Style(Banner("TESTING"), RedText))
+	fmt.Print(BigBanner("TESTING"))
+	fmt.Print(Banner("TESTING"))
 }
