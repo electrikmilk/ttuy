@@ -130,7 +130,7 @@ func Banner(message string) (banner string) {
 		banner += "#"
 	}
 	banner += " " + message + " "
-	for i := 0; i < spaces; i++ {
+	for i := 0; i < spaces-1; i++ {
 		banner += "#"
 	}
 	banner += "#\n\n"
