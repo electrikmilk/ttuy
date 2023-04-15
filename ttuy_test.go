@@ -105,10 +105,6 @@ func TestTypewriterTimed(t *testing.T) {
 	TypewriterTimed(":^)", 1000)
 }
 
-func TestFile(t *testing.T) {
-	File("LICENSE")
-}
-
 func TestViewport(t *testing.T) {
 	var bytes, err = os.ReadFile("LICENSE")
 	if err != nil {

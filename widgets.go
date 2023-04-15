@@ -12,15 +12,6 @@ import (
 	"time"
 )
 
-// File print the content of the file at path
-func File(path string) {
-	bytes, err := os.ReadFile(path)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf(string(bytes) + eol)
-}
-
 // Ask prints your prompt and feeds input from os.Stdin into store
 func Ask(prompt string, store *string) {
 	prompt = Style(fmt.Sprintf(" %s: ", prompt), Bold, Inverted)
