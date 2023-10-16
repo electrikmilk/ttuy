@@ -1,8 +1,8 @@
+//go:build windows
+
 /*
  * Copyright (c) 2023 Brandon Jordan
  */
-
-//go:build windows
 
 package ttuy
 

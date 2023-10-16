@@ -41,22 +41,16 @@ func AskSecret(prompt string, store *string) {
 }
 
 // YesNo prints a prompt that waits for "y" or "n" from os.Stdin and returns a boolean based on the input
-func YesNo(prompt string) (proceed bool) {
+func YesNo(prompt string) bool {
 	var input string
 	for {
 		Ask(prompt+" (y/n)", &input)
 		input = strings.ToLower(input)
 		if input == "y" || input == "n" {
-			if input == "y" {
-				proceed = true
-			} else if input == "n" {
-				proceed = false
-			}
-			break
+			CursorShow()
+			return input == "y"
 		}
-		input = ""
 	}
-	return
 }
 
 // Typewriter prints characters in message out one at a time

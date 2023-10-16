@@ -6,57 +6,55 @@ package ttuy
 
 import (
 	"fmt"
-
 	"github.com/eiannone/keyboard"
+	"os"
+	"strings"
 )
 
-var optionSelected int
-var lastOptionSelected = -1
+var proceed bool
+var lastProceed = true
 
 var lastPrompt string
 
 // Prompt prints a prompt for the user to choose yes or no using the arrow keys then returns a boolean based on the option chosen
-func Prompt(prompt string) (proceed bool) {
+func Prompt(prompt string) bool {
 	fmt.Print(eol)
 	go readKeys(handlePromptKeys)
 	Painter(func() (template string) {
-		if optionSelected != lastOptionSelected {
-			template = Style(prompt, Bold, GreenText) + eol
-			if optionSelected == 1 {
-				template += Style(" Yes ", Inverted, Bold)
-				proceed = true
-			} else {
-				template += Style(" Yes ", Bold)
-			}
-			template += "\t"
-			if optionSelected == 0 {
-				template += Style(" No ", Inverted, Bold)
-				proceed = false
-			} else {
-				template += Style(" No ", Bold)
-			}
-			template += eols(2) + Style(leftArrow+" "+rightArrow+" Use Left & Right Arrow Keys to Choose.", Dim)
-			lastOptionSelected = optionSelected
-			lastPrompt = template
-		} else {
+		if proceed == lastProceed {
 			template = lastPrompt
+			return
 		}
+
+		template = Style(prompt, Bold, GreenText) + eol
+		if proceed {
+			template += Style(" Yes ", Inverted, Bold)
+		} else {
+			template += Style(" Yes ", Bold)
+		}
+		template += "\t"
+		if !proceed {
+			template += Style(" No ", Inverted, Bold)
+		} else {
+			template += Style(" No ", Bold)
+		}
+		template += strings.Repeat(eol, 2) + Style(leftArrow+" "+rightArrow+" Use Left & Right Arrow Keys to Choose.", Dim, Italic)
+		lastProceed = proceed
+		lastPrompt = template
+
 		return
 	})
 	fmt.Print(eol)
-	return
+	return proceed
 }
 
 func handlePromptKeys(key any) {
 	switch key {
-	case keyboard.KeyArrowLeft:
-		if optionSelected != 1 {
-			optionSelected = 1
-		}
-	case keyboard.KeyArrowRight:
-		if optionSelected != 0 {
-			optionSelected = 0
-		}
+	case keyboard.KeyArrowLeft, keyboard.KeyArrowRight:
+		proceed = !proceed
+	case keyboard.KeyCtrlC:
+		CursorShow()
+		os.Exit(0)
 	case keyboard.KeyEnter:
 		StopPainting()
 		return

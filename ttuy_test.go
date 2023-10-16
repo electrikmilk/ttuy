@@ -67,9 +67,8 @@ func TestYesNo(t *testing.T) {
 	defer func(v *os.File) { os.Stdin = v }(os.Stdin)
 	os.Stdin = r
 
-	var received string
 	YesNo("Are you sure?")
-	fmt.Println("You entered:", received)
+	fmt.Println("You entered:", string(input))
 }
 
 func TestAskSecret(t *testing.T) {

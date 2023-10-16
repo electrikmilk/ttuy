@@ -43,12 +43,8 @@ func Segmented(n string) string {
 	for _, number := range nums {
 		line4 += " " + numbers[number].d + "  "
 	}
-	var segments string
-	segments += line1 + eol
-	segments += line2 + eol
-	segments += line3 + eol
-	segments += line4 + eol
-	return segments
+
+	return strings.Join([]string{line1, line2, line3, line4}, eol)
 }
 
 func makeNumbers() {

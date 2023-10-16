@@ -20,8 +20,8 @@ var optionCount int
 var lastMenuContent string
 var lastOptionIndex = -1
 
-var selected = "[x]"
-var notSelected = "[ ]"
+const selected = "[x]"
+const notSelected = "[ ]"
 
 type Option struct {
 	Label    string
@@ -37,8 +37,8 @@ func Menu(title string, options []Option) {
 	lastOptionIndex = -1
 	lastMenuContent = ""
 	optionCount = len(menuOptions)
-	go readKeys(handleMenuKeys)
 	firstAvailable()
+	go readKeys(handleMenuKeys)
 	Painter(func() (menu string) {
 		if lastOptionIndex != optionIndex {
 			menu = Style(menuTitle, Bold, GreenText) + eol
@@ -62,12 +62,15 @@ func Menu(title string, options []Option) {
 }
 
 func firstAvailable() {
-	if menuOptions[0].Disabled {
-		for _, option := range menuOptions {
-			if option.Disabled {
-				optionIndex++
-			}
+	if !menuOptions[0].Disabled {
+		return
+	}
+	for _, option := range menuOptions {
+		if !option.Disabled {
+			continue
 		}
+
+		optionIndex++
 	}
 }
 

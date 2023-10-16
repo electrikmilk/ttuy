@@ -65,28 +65,3 @@ func makeLine() (line string) {
 	line = Style(line, Dim)
 	return
 }
-
-func checkEven(rows *[]Row) {
-	for _, row := range *rows {
-		for _, otherRow := range combined {
-			if len(row.Columns) != len(otherRow.Columns) {
-				panic("Uneven table! Number of Columns inconsistent!")
-			}
-		}
-	}
-}
-
-func calcDimensions(rows *[]Row) {
-	dimensions = make(map[int]int)
-	for _, row := range *rows {
-		for c, column := range row.Columns {
-			if length, ok := dimensions[c]; ok {
-				if len(column) > length {
-					dimensions[c] = len(column)
-				}
-			} else {
-				dimensions[c] = len(column)
-			}
-		}
-	}
-}

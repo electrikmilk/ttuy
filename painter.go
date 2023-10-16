@@ -16,7 +16,6 @@ var lines []string
 
 var lastContent string
 var lastLineCount int
-var lastLines []string
 
 var diff int
 
@@ -30,7 +29,6 @@ func Painter(callback Template) {
 	lastContent = ""
 	lastLineCount = 0
 	currentLine = 0
-	lastLines = []string{}
 	content = callback()
 	CursorHide()
 	splitCount()
@@ -48,7 +46,7 @@ func Painter(callback Template) {
 			if content != lastContent {
 				splitCount()
 				paint()
-				last()
+				storeLast()
 			}
 		}
 		time.Sleep(50 * time.Millisecond)
@@ -56,9 +54,7 @@ func Painter(callback Template) {
 }
 
 func makeRoom() {
-	for i := 0; i < lineCount; i++ {
-		fmt.Print(eol)
-	}
+	fmt.Print(strings.Repeat(eol, lineCount))
 	LinePrev(lineCount)
 }
 
@@ -66,24 +62,17 @@ func paint() {
 	if lastLineCount < lineCount {
 		makeRoom()
 	}
-	for i, line := range lines {
-		if len(lastLines) > i {
-			if lastLines[i] != lines[i] {
-				replaceLine(line)
-			}
-		} else {
-			replaceLine(line)
-		}
+	for _, line := range lines {
+		replaceLine(line)
 		LineNext(1)
 	}
-	if lastLineCount != 0 {
-		if lastLineCount > lineCount {
-			diff = lastLineCount - lineCount
-			for i := 0; i < diff; i++ {
-				ClearLine()
-				LineNext(1)
-			}
-		}
+	if lastLineCount == 0 || lastLineCount < lineCount {
+		return
+	}
+	diff = lastLineCount - lineCount
+	for i := 0; i < diff; i++ {
+		ClearLine()
+		LineNext(1)
 	}
 }
 
@@ -97,10 +86,9 @@ func splitCount() {
 	lineCount = len(lines)
 }
 
-func last() {
+func storeLast() {
 	lastContent = content
 	lastLineCount = lineCount
-	lastLines = lines
 }
 
 // StopPainting triggers current usage of Painter to stop

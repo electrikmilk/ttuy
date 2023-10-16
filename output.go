@@ -11,8 +11,7 @@ import (
 
 func printError(label string, message string) {
 	label = Style(fmt.Sprintf(" \u2613 %s ", label), BrightRedBg, BlackText, Bold)
-	message = fmt.Sprintf(" %s", message)
-	message = Style(message, BrightRedText, Bold)
+	message = Style(" "+message, BrightRedText, Bold)
 	fmt.Println(label + message)
 	os.Exit(1)
 }
@@ -24,23 +23,20 @@ func Fail(message string) {
 
 // Failf prints message formatted and styled as an error then exits
 func Failf(message string, v ...any) {
-	message = fmt.Sprintf(message, v...)
-	printError("Error", message)
+	printError("Error", fmt.Sprintf(message, v...))
 }
 
 // FailErr handles err and prints label with err as a string styled then exits
 func FailErr(label string, err error) {
 	if err != nil {
-		var message = fmt.Sprintf("%s", err)
-		printError(label, message)
+		printError(label, fmt.Sprintf("%s", err))
 	}
 }
 
 // Warn prints message styled as a warning
 func Warn(message string) {
 	var label = Style(" \u2691 Warning ", YellowBg, BlackText, Bold)
-	message = fmt.Sprintf(" %s", message)
-	message = Style(message, YellowText, Bold)
+	message = Style(" "+message, YellowText, Bold)
 	fmt.Println(label + message)
 }
 
@@ -65,15 +61,13 @@ func Infof(message string, v ...any) {
 // Success prints message styled as a success
 func Success(message string) {
 	var label = Style(" \u2714 ", GreenBg, BlackText, Bold)
-	message = fmt.Sprintf(" %s", message)
-	message = Style(message, GreenText, Bold)
+	message = Style(" "+message, GreenText, Bold)
 	fmt.Println(label + message)
 }
 
 // Successf prints message styled and formatted as a success
 func Successf(message string, v ...any) {
-	message = fmt.Sprintf(message, v...)
-	Success(message)
+	Success(fmt.Sprintf(message, v...))
 }
 
 // BigBanner returns a box around `message` made of # signs.
@@ -87,14 +81,11 @@ func BigBanner(message string) (banner string) {
 	for i := 0; i < cols; i++ {
 		banner += "#"
 	}
-
 	banner += "\n#"
 	for i := 0; i < cols-2; i++ {
 		banner += " "
 	}
-	banner += "#"
-
-	banner += "\n#"
+	banner += "#\n#"
 	for i := 0; i < spaces; i++ {
 		banner += " "
 	}
@@ -102,14 +93,11 @@ func BigBanner(message string) (banner string) {
 	for i := 0; i < spaces; i++ {
 		banner += " "
 	}
-	banner += "#\n"
-
-	banner += "#"
+	banner += " #\n#"
 	for i := 0; i < cols-2; i++ {
 		banner += " "
 	}
 	banner += "#\n"
-
 	for i := 0; i < cols; i++ {
 		banner += "#"
 	}

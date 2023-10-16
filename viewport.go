@@ -15,9 +15,6 @@ var lastLineIdx = -1
 
 var stopViewport = make(chan bool)
 
-var topBox string
-var bottomBox string
-
 var contents string
 var contentsLines []string
 var contentsLinesCount int
@@ -30,7 +27,7 @@ func Viewport(content string) {
 	terminalCols()
 	lineIdx = 0
 	lastLineIdx = -1
-	contents = wrapString(&content, cols)
+	contents = wrapString(&content)
 	contentsLines = strings.Split(contents, eol)
 	contentsLinesCount = len(contentsLines)
 	go readKeys(handleViewportKeys)
@@ -63,12 +60,12 @@ func Viewport(content string) {
 	})
 }
 
-func wrapString(str *string, limit int) (wrapped string) {
+func wrapString(str *string) (wrapped string) {
 	chars := strings.Split(*str, "")
 	i := 0
 	for _, char := range chars {
-		if char == eol || i == limit {
-			if i == limit {
+		if char == eol || i == cols {
+			if i == cols {
 				wrapped += eol + char
 				i = 1
 			} else {

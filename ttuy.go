@@ -6,7 +6,6 @@ package ttuy
 
 import (
 	"fmt"
-
 	"github.com/olekukonko/ts"
 )
 
@@ -32,13 +31,6 @@ type Row struct {
 	Columns []string
 }
 
-func eols(times int) (eols string) {
-	for i := 0; i < times; i++ {
-		eols += eol
-	}
-	return
-}
-
 func terminalCols() {
 	size, _ := ts.GetSize()
 	cols = size.Col()
@@ -52,4 +44,29 @@ func terminalRows() {
 // Bell triggers the system bell which makes the machine make an alarm noise.
 func Bell() {
 	fmt.Print("\a")
+}
+
+func checkEven(rows *[]Row) {
+	var evenColumns = len(combined[0].Columns)
+	for i, row := range *rows {
+		var rowColumns = len(row.Columns)
+		if rowColumns != evenColumns {
+			panic(fmt.Errorf("uneven columns! Row %d has %d columns when the rest have %d", i, rowColumns, evenColumns))
+		}
+	}
+}
+
+func calcDimensions(rows *[]Row) {
+	dimensions = make(map[int]int)
+	for _, row := range *rows {
+		for c, column := range row.Columns {
+			if length, ok := dimensions[c]; ok {
+				if len(column) > length {
+					dimensions[c] = len(column)
+				}
+			} else {
+				dimensions[c] = len(column)
+			}
+		}
+	}
 }
