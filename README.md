@@ -9,7 +9,7 @@
 [![GoDoc](https://godoc.org/github.com/golang/gddo?status.svg)](https://pkg.go.dev/github.com/electrikmilk/ttuy?tab=doc)
 [![Go Report Card](https://goreportcard.com/badge/github.com/electrikmilk/ttuy)](https://goreportcard.com/report/github.com/electrikmilk/ttuy)
 
-**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural CLI UI framework. It has widgets for asking for user input through text, selection, showing progress, and for creating your own interactive widgets.
+**ttuy** (pronounced _tee-tee-YU-Y_ or like _TUI_) is an easy-to-use, performant, procedural TUI library. It has widgets for asking for user input through text, selection, showing progress, and for creating your own interactive widgets.
 
 ```console
 go get github.com/electrikmilk/ttuy
