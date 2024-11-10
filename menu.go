@@ -38,7 +38,7 @@ func Menu(title string, options []Option) {
 	lastMenuContent = ""
 	optionCount = len(menuOptions)
 	firstAvailable()
-	go readKeys(handleMenuKeys)
+	go ReadKeys(handleMenuKeys)
 	Painter(func() (menu string) {
 		if lastOptionIndex != optionIndex {
 			menu = Style(menuTitle, Bold, GreenText) + eol

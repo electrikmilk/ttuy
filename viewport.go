@@ -30,7 +30,7 @@ func Viewport(content string) {
 	contents = wrapString(&content)
 	contentsLines = strings.Split(contents, eol)
 	contentsLinesCount = len(contentsLines)
-	go readKeys(handleViewportKeys)
+	go ReadKeys(handleViewportKeys)
 	Painter(func() (template string) {
 		if lineIdx != lastLineIdx {
 			var matchingRows = rows + lineIdx - 1

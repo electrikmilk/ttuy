@@ -274,7 +274,7 @@ func TestMenu(*testing.T) {
 
 func TestPainter(*testing.T) {
 	var lastText string
-	go readKeys(func(key any) {
+	go ReadKeys(func(key any) {
 		if key == keyboard.KeyCtrlC {
 			StopPainting()
 		}

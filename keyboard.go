@@ -10,7 +10,7 @@ import (
 
 type inputCallback func(key any)
 
-func readKeys(callback inputCallback) {
+func ReadKeys(callback inputCallback) {
 	if err := keyboard.Open(); err != nil {
 		panic(err)
 	}
