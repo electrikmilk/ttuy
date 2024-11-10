@@ -48,7 +48,7 @@ func Prompt(prompt string) bool {
 	return proceed
 }
 
-func handlePromptKeys(key any) {
+func handlePromptKeys(key keyboard.Key) {
 	switch key {
 	case keyboard.KeyArrowLeft, keyboard.KeyArrowRight:
 		proceed = !proceed

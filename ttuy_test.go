@@ -274,7 +274,7 @@ func TestMenu(*testing.T) {
 
 func TestPainter(*testing.T) {
 	var lastText string
-	go ReadKeys(func(key any) {
+	go ReadKeys(func(key keyboard.Key) {
 		if key == keyboard.KeyCtrlC {
 			StopPainting()
 		}
@@ -306,4 +306,35 @@ func TestSegmented(t *testing.T) {
 func TestBanner(t *testing.T) {
 	fmt.Print(BigBanner("TESTING"))
 	fmt.Print(Banner("TESTING"))
+}
+
+func TestKeybind(_ *testing.T) {
+	BindKey(keyboard.KeyCtrlC, KeyBinding{
+		descriptor: "Exit",
+		keyString:  "^C",
+		handler: func() {
+			StopPainting()
+			fmt.Print("Exited.\n\n")
+		},
+	})
+
+	var highlight = false
+	BindKey(keyboard.KeyCtrlQ, KeyBinding{
+		descriptor: "Toggle highlight",
+		keyString:  "^Q",
+		handler: func() {
+			highlight = !highlight
+		},
+	})
+
+	Painter(func() (template string) {
+		if highlight {
+			template += Style("Text", YellowText)
+		} else {
+			template += "Text"
+		}
+		template += "\n"
+		template += Hotkeys(" • ")
+		return
+	})
 }

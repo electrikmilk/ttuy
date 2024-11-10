@@ -74,7 +74,7 @@ func firstAvailable() {
 	}
 }
 
-func handleMenuKeys(key any) {
+func handleMenuKeys(key keyboard.Key) {
 	switch key {
 	case keyboard.KeyCtrlC:
 		StopPainting()

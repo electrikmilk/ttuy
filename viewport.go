@@ -96,7 +96,7 @@ func moveDown(n int) {
 	}
 }
 
-func handleViewportKeys(key any) {
+func handleViewportKeys(key keyboard.Key) {
 	select {
 	case <-stopViewport:
 		return
